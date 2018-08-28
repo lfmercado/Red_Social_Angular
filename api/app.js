@@ -6,7 +6,8 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //Cargar Rutas
-
+var user_rutes = require('./routes/user.routes');
+var follow_rutes = require('./routes/follow.routes');
 
 //Middlewares
 app.use(bodyParser.urlencoded({extends:false}));
@@ -23,9 +24,8 @@ app.use((req, res, next) =>{
 
 
 //Rutas
-app.get('/prueba', (req, res )=>{
-    res.status(200).send({message : 'Hola desde el api!!'});
-});
+app.use('/api', user_rutes);
+app.use('/api', follow_rutes);
 
 //Exportar la configuracion
 module.exports = app;

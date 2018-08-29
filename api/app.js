@@ -8,7 +8,8 @@ var app = express();
 //Cargar Rutas
 var user_rutes = require('./routes/user.routes');
 var follow_rutes = require('./routes/follow.routes');
-
+var publication_rutes = require('./routes/publication.routes');
+var message_rutes = require('./routes/message.rutes');
 //Middlewares
 app.use(bodyParser.urlencoded({extends:false}));
 app.use(bodyParser.json());
@@ -26,6 +27,8 @@ app.use((req, res, next) =>{
 //Rutas
 app.use('/api', user_rutes);
 app.use('/api', follow_rutes);
+app.use('/api', publication_rutes);
+app.use('/api', message_rutes);
 
 //Exportar la configuracion
 module.exports = app;

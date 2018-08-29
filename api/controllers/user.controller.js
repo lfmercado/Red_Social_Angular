@@ -1,6 +1,8 @@
 'use strict'
 
 var User = require('../models/user.model');
+var Follow = require('../models/follows.model');
+var Publication = require('../models/publications.model');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('../services/jwt.service');
 var mongoose_paginte = require('mongoose-pagination');
@@ -146,9 +148,136 @@ function getUser(req, res){
                     message: 'Error, el usuario no existe!!'
                 });
       }  
-         res.status(200).send({user:  user});
+      ///Revisar si la persona que estoy buscando ya lo estoy siguiendo 
+      followThisUser(req.user.sub,userId).then((value)=>{
+        res.status(200).send({
+            user,
+            value
+        });
+      });
+         
     });
 }
+
+async function followThisUser(identity_user_id, user_id){
+
+     try {
+        var following = await Follow.findOne({ user: identity_user_id, followed: user_id}).exec()
+            .then((following) => {
+                return following;
+            })
+            .catch((err)=>{
+                return console.log(err);
+            });
+        var followed = await Follow.findOne({ user: user_id, followed: identity_user_id}).exec()
+            .then((followed) => {
+                return followed;
+            })
+            .catch((err)=>{
+                return console.log(err);
+            });
+        return {
+            following: following,
+            followed: followed
+        }
+    } catch(e){
+        console.log(e);
+    }
+}
+
+async function followsUsersId(user_id){
+    try {                                                      //De esta manera le quito los atributos de una consulta para no mostrarlos
+        var following = await Follow.find({ 'user': user_id}).select({'_id':0, '__v':0, 'user':0}).exec()
+            .then((follows) => {
+               return follows;
+            })
+            .catch((err)=>{
+                return console.log(err);
+            });
+
+        var followed = await Follow.find({'followed': user_id}).select({'_id':0, '__v':0, 'followed':0}).exec()
+            .then((followed) => {
+                return followed;
+            })
+            .catch((err)=>{
+                return console.log(err);
+            });  
+
+            //Capturo los following
+            var following_clean = [];
+            following.forEach((follow) => {
+                following_clean.push(follow.followed);
+            });
+        
+            //capturo los Followed
+            var followed_clean = [];
+                console.log(followed);
+                followed.forEach((follow) => {
+                    followed_clean.push(follow.user);
+                });
+                
+        return {
+            following: following_clean,
+            followed: followed_clean
+        }
+    } catch(e){
+        console.log(e);
+    }
+}
+
+function getCounter(req, res){
+    if(req.params.id){
+        getCountFollows(req.params.id).then((value)=>{
+            return res.status(200).send({
+            followed: value.followed,
+            following: value.following,
+            publications: value.publications
+            })
+        });
+    }
+    getCountFollows(req.user.sub).then((value)=>{
+        return res.status(200).send({
+            followed: value.followed,
+            following: value.following,
+            publications: value.publications
+        })
+    });
+}
+
+
+async function getCountFollows(user_id){
+    var following = await Follow.countDocuments({user : user_id}).exec()
+    .then((count) => {
+        return count;
+     })
+     .catch((e)=>{
+         console.log(e);
+     });
+
+     var followed = await Follow.countDocuments({ followed : user_id}).exec()
+     .then((count) => {
+        return count;
+     })
+     .catch((e)=>{
+        console.log(e);
+     });
+
+     var publications = await Publication.countDocuments({'user': user_id}).exec()
+        .then(count =>{
+            return count;    
+        })
+        .catch((e)=>{
+            console.log(e);
+         });
+
+     return {
+         following : following,
+         followed: followed,
+         publications: publications
+     }
+}
+
+
 
 function getUsers(req, res){
     var indentity_user_id = req.user.sub;
@@ -170,11 +299,19 @@ function getUsers(req, res){
                     message: 'Error, No hay usuarios existentes!!'
                 });
       } 
-      return res.status(200).send({
+
+      followsUsersId(indentity_user_id).then((value)=>{
+          return res.status(200).send({
           users,
+          userFollowing: value.following,
+          userFollowMe: value.followed,
           total,
           pages: Math.ceil(total/itemsPerPage)
-      });
+        })
+        .catch((err)=>{
+            return console.log(err);
+        });
+      })
     });
 }
 
@@ -271,8 +408,10 @@ module.exports ={
     saveUser,
     loginUser,
     getUser,
+    getCounter,
     getUsers,
     updateUser,
     uploadImage,
     getImageFile
+
 }

@@ -1,1 +1,19 @@
+/*  Editar el header */
+.navigation{
+    margin: 0px;
+    padding: 0px !important;
     
+}
+.navigation .navbar{
+    border-radius: 0px;
+    background: #0079a1 !important;
+    border:none;
+}
+
+.navigation .navbar *{
+    color: whitesmoke;   
+}
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-brand{
+    color: #f3f1f1 !important;
+}

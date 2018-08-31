@@ -20,13 +20,14 @@ Breve explicacion de las dependecias
 
     //****************************///////************************////////****************************///////*****************//
 
-                    ¡¡¡¡¡¡COMO HACER FUNCIONAR EL PROYECTO!!!!!!
+                                                ¡¡¡¡¡¡COMO HACER FUNCIONAR EL PROYECTO!!!!!!
         ***** REQUERIMIENTOS
 
         ** Tener instaldo NodeJs
         <--Se descarga acá--> https://nodejs.org/es/ --> Por recomendacion descargar la version LTS
 
-        ** Tener instalado la consola de comando git-bash
+        ** Tener instalado la consola de comando git-bash o cualquier otra consola de comando
+        Para descargar git-bash
         <--Se descarga acá--> https://git-scm.com/downloads
 
         ** Tener instalado un editor de codigo, personalmente se recomienda visual studio code
@@ -37,7 +38,7 @@ Breve explicacion de las dependecias
         <--Se descarga acá--> https://www.mongodb.com/download-center#community
 
         ** instalar el robot 3T 
-        <--Se descarga acá--> https://robomongo.org/ ****** ¡¡¡OJO!! Descargar la opcion "Robo 3T" NO "Studio 3T"
+        <--Se descarga acá--> https://robomongo.org/ ****** ¡¡¡OJO!!! Descargar la opcion "Robo 3T" NO "Studio 3T"
 
 
         ***** COMPLEMENTOS RECOMENDADOS (Para visual studio)
@@ -47,6 +48,18 @@ Breve explicacion de las dependecias
          ** vscode-faker
          ** Angular 6 Snippets - TypeScript, Html, Angular Material, ngRx, RxJS & Flex Layout
          ** Beatify
+         *** Integrar la consola de comando en el editor de texto ***
+                ** file->preferences->settings
+                saldra una barra negra en la cual escribiremos "shell"
+                bajamos la barra de navegacion hasta encontrar -->> "terminal.integrated.shell.windows"
+                buscamos el icono del lapiz (lado izquierdo) para poder editar y se abrira en el lado derecho un documento
+                en ese documento buscaremos esta linea -->   "terminal.integrated.shell.windows"
+                en frente de esa linea copiaremos la ruta donde se encuentra el .exe de la aplicacion de consola que acabamos de instalar, si la consola que instalo fue git-bash esta normalmente se encuentra en esta ruta:
+                "C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Git\\bin\\bash.exe"
+                        El usuario es el nombre del administrador del sistema
+                ****** Tener en cuenta que la carpeta "AppData" normalmente se encuetra como oculta *****
+
+
 
 
         ****EL BACKEND ----

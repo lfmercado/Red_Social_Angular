@@ -20,11 +20,12 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "core-js": "^2.5.4",
-    "rxjs": "^6.0.0",
-    "zone.js": "~0.8.26",
     "bootstrap": "3.3.6",
-    "jquery": "1.12"
+    "core-js": "^2.5.4",
+    "jquery": "1.12",
+    "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.3.1",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",

@@ -16,3 +16,63 @@ Breve explicacion de las dependecias
     lo que hace un middlwere es hacer de intermediario con metodos que se definan, como por ejemplo modificar registros, crear o eliminar,
     por medio del middlewere verifico que la persona que este realizando cualquier peticion al controlador este correctamente autentificado 
     y tenga los permisos necesarios.
+
+
+    //****************************///////************************////////****************************///////*****************//
+
+                    ¡¡¡¡¡¡COMO HACER FUNCIONAR EL PROYECTO!!!!!!
+        ***** REQUERIMIENTOS
+
+        ** Tener instaldo NodeJs
+        <--Se descarga acá--> https://nodejs.org/es/ --> Por recomendacion descargar la version LTS
+
+        ** Tener instalado la consola de comando git-bash
+        <--Se descarga acá--> https://git-scm.com/downloads
+
+        ** Tener instalado un editor de codigo, personalmente se recomienda visual studio code
+        <--Se descarga acá--> https://visualstudio.microsoft.com/downloads/?rr=https%3A%2F%2Fwww.google.com%2F
+                                     descargar la version free "Visual Studio Code"
+
+        ** Instalar el MongoDB
+        <--Se descarga acá--> https://www.mongodb.com/download-center#community
+
+        ** instalar el robot 3T 
+        <--Se descarga acá--> https://robomongo.org/ ****** ¡¡¡OJO!! Descargar la opcion "Robo 3T" NO "Studio 3T"
+
+
+        ***** COMPLEMENTOS RECOMENDADOS (Para visual studio)
+        Si se instalo el editor de texto visual estudio es recomendable instalar estas extensiones que facilitan la escritura del codigo
+         ** npm Intellisense
+         ** TypeScript Import
+         ** vscode-faker
+         ** Angular 6 Snippets - TypeScript, Html, Angular Material, ngRx, RxJS & Flex Layout
+         ** Beatify
+
+
+        ****EL BACKEND ----
+                El backend se encuentra dentro de la carpeta "API" 
+                para hacer funcionar realizar los siguientes pasos:
+                ** Pararse en el directorio raiz de la carpeta --->>> Red_Social_Angular/api
+                ** introducir el comando ---->>> npm update 
+                *** ¡¡Esperar a que termine de instalar los paquetes/librerias/dependencias!! ***
+                ** luego se introduce el comando --->>> npm start
+                ** al introducir este comando nos debe mostrar unas lineas en las cuales se pueden ver estas
+                ***
+                Conexion a la base de datos se ha realiazado con exito!!
+                Conexion al servidor establecida con exito!!
+                ***
+                si nos muestra esto significa que todo anda bien
+
+    
+        ****EL FRONTEND
+                El frontend se encuentra dentro de la carpeta "CLIENT"
+                para hacer funcionar realizar los siguientes pasos:
+                ** Pararse en el directorio raiz de la carpeta --->>> Red_Social_Angular/client
+                ** instalar el angular cli
+                    para hacer esto en la consola, parados en la raiz del directorio escribimos
+                   ******     npm install -g @angular/cli@latest    ******
+                ** Luego introducir el comando ---->>>  npm update
+                ** luego se introduce el comando --->>> npm start
+                ** Si todo ha salido bien,nos mostrara un mensaje "Compied successfully" y podriamos dirigirnos a la siguiente direccion
+                http://localhost:4200/
+                

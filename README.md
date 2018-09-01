@@ -36,9 +36,13 @@ Breve explicacion de las dependecias
 
         ** Instalar el MongoDB
         <--Se descarga acá--> https://www.mongodb.com/download-center#community
+        ** Luego de instalar el mongodb tenemos que ir a disco local c y creamos 2 carpetas una llamada "data" y dentro de esa creamos otra que se llame "db" **
 
         ** instalar el robot 3T 
         <--Se descarga acá--> https://robomongo.org/ ****** ¡¡¡OJO!!! Descargar la opcion "Robo 3T" NO "Studio 3T"
+         
+        ** instalar el postman
+        <--Se descarga acá-->  https://app.getpostman.com/app/download/win64?_ga=2.200281774.1060200135.1535829236-1128931911.1535829236
 
 
         ***** COMPLEMENTOS RECOMENDADOS (Para visual studio)

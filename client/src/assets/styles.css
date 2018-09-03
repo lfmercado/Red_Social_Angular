@@ -1,3 +1,12 @@
+/* Generales*/
+.h1-strong{
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 13px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
 /*  Editar el header */
 .navigation{
     margin: 0px;
@@ -8,6 +17,13 @@
     border-radius: 0px;
     background: #0079a1 !important;
     border:none;
+}
+.active{
+    background: #023e52 !important;
+}
+
+.navigation .navbar a:hover{
+    background: #023e52 !important;
 }
 
 .navigation .navbar *{

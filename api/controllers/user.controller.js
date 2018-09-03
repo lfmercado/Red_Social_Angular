@@ -99,7 +99,6 @@ function loginUser(req, res){
     var params = req.body;
     var email = params.email;
     var password = params.password;
-    
     User.findOne({email: email},(err, user)=>{
         if(err){
             res.status(500).send({

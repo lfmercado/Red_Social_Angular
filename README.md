@@ -36,7 +36,7 @@ Breve explicacion de las dependecias
 
         ** Instalar el MongoDB
         <--Se descarga acá--> https://www.mongodb.com/download-center#community
-        ** Luego de instalar el mongodb tenemos que ir a disco local c y creamos 2 carpetas una llamada "data" y dentro de esa creamos otra que se llame "db" **
+        ** Luego de instalar el mongodb tenemos que ir a disco local C y creamos 2 carpetas una llamada "data" y dentro de esa creamos otra que se llame "db" **
 
         ** instalar el robot 3T 
         <--Se descarga acá--> https://robomongo.org/ ****** ¡¡¡OJO!!! Descargar la opcion "Robo 3T" NO "Studio 3T"
@@ -71,6 +71,7 @@ Breve explicacion de las dependecias
                 para hacer funcionar realizar los siguientes pasos:
                 ** Pararse en el directorio raiz de la carpeta --->>> Red_Social_Angular/api
                 ** introducir el comando ---->>> npm update 
+                ** Luego introducir el comando ---->>>  npm install
                 *** ¡¡Esperar a que termine de instalar los paquetes/librerias/dependencias!! ***
                 ** luego se introduce el comando --->>> npm start
                 ** al introducir este comando nos debe mostrar unas lineas en las cuales se pueden ver estas
@@ -89,6 +90,7 @@ Breve explicacion de las dependecias
                     para hacer esto en la consola, parados en la raiz del directorio escribimos
                    ******     npm install -g @angular/cli@latest    ******
                 ** Luego introducir el comando ---->>>  npm update
+                ** Luego introducir el comando ---->>>  npm install
                 ** luego se introduce el comando --->>> npm start
                 ** Si todo ha salido bien,nos mostrara un mensaje "Compied successfully" y podriamos dirigirnos a la siguiente direccion
                 http://localhost:4200/

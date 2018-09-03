@@ -9,24 +9,39 @@
       <ul class="nav navbar-nav">
         <li>
           <a href="">
-            <span class="glyphicon glyphicon-home"></span>
+            <span class="glyphicon glyphicon-home" [routerLinkActive]="['active']"></span>
             Inicio
           </a>
         </li>
         <li>
           <a href="">
-            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="glyphicon glyphicon-th-list" [routerLinkActive]="['active']"></span>
             TimeLine
           </a>
         </li>
         <li>
           <a href="">
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-user" [routerLinkActive]="['active']"></span>
             People
           </a>
         </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
 
+          <li>
+            <a [routerLink]="['/register']" [routerLinkActive]="['active']">
+              <span class="glyphicon glyphicon-user"></span>
+              Registro
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/login']" [routerLinkActive]="['active']">
+              <span class="glyphicon glyphicon-log-in"></span>
+              Login
+            </a>
+          </li>
+
+        </ul>
     </div>
   </nav>
 </div>

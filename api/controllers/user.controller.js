@@ -268,7 +268,8 @@ async function getCountFollows(user_id){
         .catch((e)=>{
             console.log(e);
          });
-
+         
+        
      return {
          following : following,
          followed: followed,

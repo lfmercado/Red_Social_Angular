@@ -29,6 +29,9 @@ export class AppComponent implements OnInit, DoCheck {
     this.tokken = this._userService.getTokken();
   }
 
+  logOut(){
+    localStorage.clear();
+  }
 
 }
 

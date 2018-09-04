@@ -10,6 +10,7 @@ export class UserService{
     public url: string;
     public identity;
     public tokken;
+    public stats;
     constructor(
         public _http: HttpClient 
     ){
@@ -49,5 +50,26 @@ export class UserService{
             this.tokken = null;
         }
         return this.tokken;
+    }
+    getStats(){
+        let stats = JSON.parse(localStorage.getItem('stats'));
+        if(stats != undefined){
+            this.stats = stats;
+        }else{
+            this.stats = null;
+        }
+        return this.stats;
+    }
+
+    getCounter(userId = null):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', this.getTokken());
+
+        if(userId != null){
+           return this._http.get(this.url + 'counters/'+userId, {headers: headers});
+        }else{
+           return this._http.get(this.url + 'counters', {headers: headers});
+        }
+
     }
 }

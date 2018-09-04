@@ -8,12 +8,18 @@ import {HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { TimeLineComponent } from './components/time-line/time-line.component';
+import { PeopleComponent } from './components/people/people.component';
 
 @NgModule({
   declarations: [//Aqui se cargan los pipes y los componentes
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    TimeLineComponent,
+    PeopleComponent
   ],
   imports: [//Aqui se cargan los modulos que se crean interna o extenamente
     BrowserModule,

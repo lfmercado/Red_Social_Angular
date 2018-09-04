@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
         this.tokken = response;
         if(this.tokken != null && this.tokken != undefined){
           this.res = true;
+          this.getCounters();
           localStorage.setItem('tokken',   JSON.stringify(this.tokken));
         }
         else{
@@ -68,4 +69,17 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  getCounters(){
+
+    this._userService.getCounter().subscribe(
+      response =>{
+        console.log(response);
+      if(response.following != undefined){
+
+      }
+      },
+      error=>{       
+        console.log(error);
+      });
+  }
 }

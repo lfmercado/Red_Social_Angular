@@ -55,3 +55,22 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 .navigation .navbar .dropdown-menu a:hover{
     background: #eee !important;
 }
+
+/*Mostrar imagen de usuario*/
+.avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 700px;
+    overflow: hidden;
+    margin-top: 8px;
+    margin-right: 3px;
+    
+}
+.avatar img{
+    height: 45px;
+}
+
+.image_for_edit img{
+    width:95px; 
+    height: 110px;
+}

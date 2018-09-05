@@ -10,7 +10,8 @@ exports.ensureAuth = function(req, res, next){
             message: 'Error, la peticion no tienen la cabecera de autentificacion!!'
         });
     }                                       //por medio de este metodo se le quitan cualquier comilla doble o simple que tenga el tokken
-    var tokken = req.headers.authorization.replace(/['"]/g,'');
+    var tokken = req.headers.authorization.replace(/['"]+/g,'');
+    //console.log(req.headers);
     try {
         var payload = jwt.decode(tokken, secret);
         if(payload.exp <= moment.unix()){

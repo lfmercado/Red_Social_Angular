@@ -318,35 +318,46 @@ function getUsers(req, res){
 function updateUser(req, res){
     var userId = req.params.id;
     var params = req.body;
-
     //Borramos la propiedad password ya que esta no se podra modificar desde esta vista!!
     delete params.password;
-
     if(userId != req.user.sub){
         return res.status(500).send({
             message: 'Error, no posees los permisos para modificar los datos de otro usuario!!'
         });
     }
-    User.findByIdAndUpdate(userId, params, {new : true}, (err, userUpdate)=>{
-        if(err){
-            res.status(500).send({
-                message: 'Error, no se ha podido realizar la peticion!!'
-            });
-      } 
-      if(!updateUser){
-        return res.status(404).sen({
-            message: 'Error, no se ha podido actualizar el usuario'
+    User.find({email : params.email.toLowerCase()}).exec(function(err, users){
+        var user_isset = false;
+        users.forEach((user) => {
+            if(user._id != userId) user_isset = true;
         });
-      }
-      return res.status(200).send({userUpdate});
-    })
+        if(user_isset) return res.status(404).send('Error, no se puede actualizar el registro, los Id´s no son iguales');
+
+            else{
+                console.log(userId);
+                User.findByIdAndUpdate(userId, params, {new : true}, (err, userUpdate)=>{
+                    if(err){
+                        res.status(500).send({
+                            message: 'Error, no se ha podido realizar la peticion de actualizar el usuario!!'
+                        });
+                } 
+                if(!updateUser){
+                    return res.status(404).sen({
+                        message: 'Error, no se ha podido actualizar el usuario'
+                    });
+                }
+                return res.status(200).send({userUpdate});
+                });
+            }
+      
+    });
+
 }
 
 //Subir Foto de perfil/Avatar
 function uploadImage(req, res){
 
     var userId = req.params.id;
- 
+    // console.log(req);
     if(req.files){
         var filePath = req.files.image.path;
         var fileSplit = filePath.split('\\');
@@ -357,12 +368,12 @@ function uploadImage(req, res){
         if(userId != req.user.sub){
           return removeFiles(res, filePath,'Error, no posees los permisos para modificar los datos--Imagen de otro usuario!!');            
         }
-
+       
         if(fileExt == 'PNG' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif'){
-            User.findOneAndUpdate(userId, {image : fileName}, {new : true}, (err, userUpdate)=>{
+            User.findByIdAndUpdate(userId, {image : fileName}, {new : true}, (err, userUpdate)=>{
                 if(err){
                     res.status(500).send({
-                        message: 'Error, no se ha podido realizar la peticion!!'
+                        message: 'Error, no se ha podido realizar la peticion para subir el avatar del usuario!!'
                     });
               } 
               if(!updateUser){

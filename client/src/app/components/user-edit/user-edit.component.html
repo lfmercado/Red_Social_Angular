@@ -2,10 +2,10 @@
   <h1 class="h1-strong">{{title}}</h1>
   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-12">
     <div class="alert alert-success" *ngIf="res">
-      !!El Usuario Se Ha Guardado Con Exito!! Puedes <a [routerLink]="['/login']">Loguearte Aquí</a>
+      !!Los datos se han actualizado con exito!!
     </div>
     <div class="alert alert-danger" *ngIf="res==false">
-      !!Error, no se ha podido crear el usuario!!
+      !!Los datos no se han podido actualizar, posiblemente el email ya se encuenta en uso!!
     </div>
     <p>
       <label>Nombre</label>
@@ -28,11 +28,12 @@
         name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
       <span *ngIf="!email.valid && email.touched">¡¡El email es obligatorio!!</span>
     </p>
+    <div class="image_for_edit"   *ngIf="user.image && user.image != 'null'">
+      <img src="{{url + 'get-image-user/' + user.image}}">
+    </div>
     <p>
-      <label>Contraseña</label>
-      <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control"
-        required>
-      <span *ngIf="!password.valid && password.touched">¡¡La contraseña es obligatoria!!</span>
+      <label>Subir avatar</label>
+      <input type="file" placeholder="Subir Imagen" (change)="filechangeEvent($event)" accept="image/png, image/jpeg" >
     </p>
     <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!registerForm.form.valid">
   </form>

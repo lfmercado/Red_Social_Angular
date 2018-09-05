@@ -1,5 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
+
+import { Global } from './services/Global.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,11 +12,11 @@ export class AppComponent implements OnInit, DoCheck {
   public title = 'Ng Social';
   public identity;
   public tokken;
-
+  public url:string;
   constructor(
     private _userService: UserService
   ){
-
+    this.url = Global.url;
   }
 
   ngOnInit() {

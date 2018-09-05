@@ -43,7 +43,7 @@ export class UserService{
     }
 
     getTokken(){
-        let tokken = JSON.parse(localStorage.getItem('tokken'));
+        let tokken = localStorage.getItem('tokken');
         if(tokken != undefined){
             this.tokken = tokken;
         }else{
@@ -70,6 +70,15 @@ export class UserService{
         }else{
            return this._http.get(this.url + 'counters', {headers: headers});
         }
+
+    }
+
+    updateUser(user: User):Observable<any>{
+        let params = JSON.stringify(user);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', this.getTokken());
+        
+        return this._http.put(this.url + 'user-update/'+ user._id , params, {headers: headers})
 
     }
 }

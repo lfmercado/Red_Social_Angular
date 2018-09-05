@@ -44,6 +44,9 @@
           <li class="avatar">
 
           </li>
+          <li class="avatar" *ngIf="identity.image">
+            <img src="{{url + 'get-image-user/' + identity.image}}">      
+           </li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="">
               {{identity.name}}
@@ -57,7 +60,7 @@
                 </a>
               </li>
               <li>
-                  <a href="">
+                  <a [routerLink]="['/user-edit']">
                       <span class="glyphicon glyphicon-cog"></span>
                     Mis Datos
                   </a>

@@ -34,18 +34,13 @@ export class LoginComponent implements OnInit {
         console.log(response);
         if(response.user && response.user._id){
           this.identity = response.user;
-          this.res = true;
           //Mantener la sesion iniciada
           this.getTokken();  
           localStorage.setItem('identity', JSON.stringify(this.identity));    
           this._router.navigate(['/']);
         }
-        else{
-          this.res = false;
-        }
       },
       error => {
-        this.res = false;
         console.log(<any>error);
       });
   }
@@ -53,18 +48,13 @@ export class LoginComponent implements OnInit {
   getTokken(){
     this._userService.sigUp(this.user, 'true').subscribe(
       response =>{
-        this.tokken = response;
+        this.tokken = response.tokken;
         if(this.tokken != null && this.tokken != undefined){
-          this.res = true;
+          localStorage.setItem('tokken',this.tokken);
           this.getCounters();
-          localStorage.setItem('tokken',   JSON.stringify(this.tokken));
-        }
-        else{
-          this.res = false;
         }
       },
       error => {
-        this.res = false;
         console.log(<any>error);
       });
   }
@@ -75,10 +65,12 @@ export class LoginComponent implements OnInit {
       response =>{
         console.log(response);
       if(response.following != undefined){
-
+        localStorage.setItem('stats', JSON.stringify(response));
+        this.res = true;
       }
       },
-      error=>{       
+      error=>{    
+        this.res = false;   
         console.log(error);
       });
   }

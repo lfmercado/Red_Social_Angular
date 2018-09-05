@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { TimeLineComponent } from './components/time-line/time-line.component';
 import { PeopleComponent } from './components/people/people.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [//Aqui se cargan los pipes y los componentes
@@ -19,7 +20,8 @@ import { PeopleComponent } from './components/people/people.component';
     RegisterComponent,
     HomeComponent,
     TimeLineComponent,
-    PeopleComponent
+    PeopleComponent,
+    UserEditComponent
   ],
   imports: [//Aqui se cargan los modulos que se crean interna o extenamente
     BrowserModule,

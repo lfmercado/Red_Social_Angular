@@ -100,7 +100,7 @@ function loginUser(req, res){
     var email = params.email;
     var password = params.password;
     User.findOne({email: email},(err, user)=>{
-        console.log(user);
+        
         if(err){
             res.status(500).send({
                 message: 'Error, No se ha podido loguear correptamente'
@@ -211,7 +211,6 @@ async function followsUsersId(user_id){
         
             //capturo los Followed
             var followed_clean = [];
-                console.log(followed);
                 followed.forEach((follow) => {
                     followed_clean.push(follow.user);
                 });
@@ -308,11 +307,9 @@ function getUsers(req, res){
           userFollowMe: value.followed,
           total,
           pages: Math.ceil(total/itemsPerPage)
-        })
-        .catch((err)=>{
-            return console.log(err);
         });
-      })
+     
+      });
     });
 }
 
@@ -334,7 +331,7 @@ function updateUser(req, res){
         if(user_isset) return res.status(404).send('Error, no se puede actualizar el registro, los Id´s no son iguales');
 
             else{
-                console.log(userId);
+                
                 User.findByIdAndUpdate(userId, params, {new : true}, (err, userUpdate)=>{
                     if(err){
                         res.status(500).send({

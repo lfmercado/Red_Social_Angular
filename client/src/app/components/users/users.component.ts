@@ -86,7 +86,7 @@ export class UsersComponent implements OnInit, DoCheck {
             console.log(this.follows);
             if(page > this.pages)
             {
-              this._router.navigate(['/gente', 1]);
+              this._router.navigate(['/users', 1]);
             }
             console.log(response);
           }

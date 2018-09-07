@@ -51,15 +51,19 @@ function getPublications(req, res){
         var follows_clean =[]; 
         follows.forEach((follow)=>{
             follows_clean.push(follow.followed);
-        })
+        });
+    //Por medio de este push podemos ver nuestras publicaciones
+        follows_clean.push(req.user.sub);        
+        
         Publication.find({user: {'$in':follows_clean}}).sort('-created_at').populate('user').paginate(page, itemsPerPage, (err, publications, total)=>{
             if(err) return res.status(500).send({message: 'Error, no se han podido devolver las publicaiones'}); 
             if(!publications) return res.status(404).send({message: 'Error, no hay publicaiones'}); 
-
             return res.status(200).send({
                 total_items: total,
                  pages: Math.ceil(total/itemsPerPage),
-                publications               
+                 itemsPerPage: itemsPerPage,
+                publications,
+                            
             }); 
         });
     });

@@ -100,12 +100,13 @@ function loginUser(req, res){
     var email = params.email;
     var password = params.password;
     User.findOne({email: email},(err, user)=>{
+        console.log(user);
         if(err){
             res.status(500).send({
                 message: 'Error, No se ha podido loguear correptamente'
             });
         }else{
-            if(user){
+            if(user != null){
                 bcrypt.compare(password, user.password, (err, check)=>{
                     if(check){
                         user.password = undefined;

@@ -67,7 +67,9 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
     
 }
 .avatar img{
-    height: 45px;
+    height: 33px;
+    width: 34px;
+    border-radius: 700px
 }
 
 .image_for_edit img{
@@ -77,7 +79,8 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 
 /*Imagenes de la sesion de people*/
 
-.item-user .image-user{
+.item-user .image-user,
+.item-publication .image-user{
     width: 75px !important;;
     height: 75px !important;
     border-radius: 100px !important;
@@ -86,6 +89,9 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
     margin-right: 15px;
 }
 
+.item-publication .user-name{
+    margin-top: 10px;
+}
 .avatar-exist{
     width: 150px !important;
 }
@@ -177,8 +183,8 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 
 #user-card .following-data{
     float: left;
-    padding-right: 8%;
-    padding-left: 7.5%;
+    padding-right: 5%;
+    padding-left: 7%;
     margin-top: 20px;
     border-right: 2px solid #555;
 }
@@ -191,6 +197,10 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 #new-publication{
     padding: 7px;
     width: 32% !important;
+    
+}
+.people{
+    height: 100vh;
 }
 
 /* Time Line*/

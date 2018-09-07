@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { Global } from '../../services/Global.service';
 import { Publication } from '../../models/publication.model';
 import { PublicationService } from '../../services/publication.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'sidebar',
@@ -17,11 +18,14 @@ export class SidebarComponent implements OnInit, DoCheck {
   public url;
   public res;
   public publication: Publication;
-
+  public total;
+  public publications;
+  public pages;
 
   constructor(
     private _userService: UserService,
-    private _publicationService: PublicationService
+    private _publicationService: PublicationService,
+    private _router: Router
   ) {
     this.url = Global.url;
     this.identity = this._userService.getIdentity();
@@ -48,6 +52,7 @@ export class SidebarComponent implements OnInit, DoCheck {
         if(response.publicated){
           this.res=true;
           this.getCounters();
+          this.getPublication(1);
         form.reset();
         }else{
           this.res= false;
@@ -73,5 +78,24 @@ export class SidebarComponent implements OnInit, DoCheck {
         console.log(error);
       });
   }
+  getPublication(page){
+    
+    this._publicationService.getPublications(this.tokken, page).subscribe(
+      response =>{
+        if(response.publications){
+          this.total = response.total_items;
+          this.pages = response.pages;
+          this.publications = response.publications;
+          if (page > this.pages){
+            this._router.navigate(['/time-line']);
+          }
+        }
+      },
+      error =>{
+        if(error) console.log(error);
+        
+      });
+  }
+
 
 }

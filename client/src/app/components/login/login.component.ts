@@ -38,10 +38,14 @@ export class LoginComponent implements OnInit {
           this.getTokken();  
           localStorage.setItem('identity', JSON.stringify(this.identity));    
           this._router.navigate(['/']);
+        }else{
+          this.res = false; 
+          console.log('error');
         }
       },
       error => {
         console.log(<any>error);
+        this.res = false;
       });
   }
 

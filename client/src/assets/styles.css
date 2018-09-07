@@ -227,5 +227,19 @@ section {
 .loaded section {
     opacity: 1;
 }
+
+
+///Animacion para ampliar la imagen cuando se le haga un over.
+}
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s ease 0s;
+    transition: opacity 0.35s ease 0s;
+}
+
  */
- 

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Global } from '../../services/Global.service';
 import { Publication } from '../../models/publication.model';
@@ -25,7 +25,8 @@ export class SidebarComponent implements OnInit, DoCheck {
   constructor(
     private _userService: UserService,
     private _publicationService: PublicationService,
-    private _router: Router
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
     this.url = Global.url;
     this.identity = this._userService.getIdentity();
@@ -53,7 +54,8 @@ export class SidebarComponent implements OnInit, DoCheck {
           this.res=true;
           this.getCounters();
           this.getPublication(1);
-        form.reset();
+          form.reset();
+          this._router.navigate(['/time-line']);
         }else{
           this.res= false;
         }
@@ -96,6 +98,15 @@ export class SidebarComponent implements OnInit, DoCheck {
         
       });
   }
+
+
+
+    //Propiedad para poder pasar datos del componente al otro
+    @Output() sended = new EventEmitter();
+
+    sendPublication(event){
+      this.sended.emit({send: 'true'});
+    }
 
 
 }

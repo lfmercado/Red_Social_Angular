@@ -6,12 +6,12 @@ import { Publication } from '../../models/publication.model';
 import { PublicationService } from '../../services/publication.service';
 declare var $;
 @Component({
-  selector: 'app-time-line',
-  templateUrl: './time-line.component.html',
-  styleUrls: ['./time-line.component.css'],
+  selector: 'publications',
+  templateUrl: './publications.component.html',
+  styleUrls: ['./publications.component.css'],
   providers: [UserService, PublicationService]
 })
-export class TimeLineComponent implements OnInit, DoCheck {
+export class PublicationsComponent implements OnInit, DoCheck {
   
   public url;
   public tokken;
@@ -34,7 +34,7 @@ export class TimeLineComponent implements OnInit, DoCheck {
     this.url = Global.url;
     this.identity = this._userServive.getIdentity();
     this.tokken = this._userServive.getTokken();
-    this.title = "TimeLine";
+    this.title = "Publicaciones";
  
   }
 
@@ -63,8 +63,6 @@ export class TimeLineComponent implements OnInit, DoCheck {
             //por medio de la libreria de Jquery hacemos que la pagina haga scroll automatico cada vez que
             //carguemos nuevas publicaciones
             $("html, body").animate({scrollTop: $('body').prop("scrollHeight")}, 500);
-            //$('.panel-body').slice();
-
           }
           if (page > this.pages){
             this._router.navigate(['/time-line']);
@@ -104,11 +102,6 @@ export class TimeLineComponent implements OnInit, DoCheck {
         this.noViewMore = true;
     }    
     this.getPublications(this.page, true);
-  }
-
-//Refrescar las publicaciones automaticamente
-  refresPublications(event){
-    this.getPublications(1);
   }
 
 }

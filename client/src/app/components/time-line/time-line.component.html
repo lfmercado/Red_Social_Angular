@@ -1,5 +1,9 @@
 <div class="col-lg-8">
-  <h1 class="h1-strong"> {{title}}</h1>
+  <h1 class="h1-strong"> {{title}} 
+    <button class="btn btn-success btn-sm" (click)="refresPublications($event)">Refrescar Pub.</button>
+  </h1>
+ 
+  <!--<publications></publications>   Componente de publicaciones-->
   <div id="publications">
     <div *ngFor="let publication of publications" class="item-publication">
       <div class="panel panel-default">
@@ -11,6 +15,7 @@
             </a>
           </div>        
           <div class="user-name">{{publication.user.name+ ' ' + publication.user.surname}}</div>
+          <div class="date">{{(publication.created_at| amFromUnix)|amLocale:'es' | amTimeAgo }}</div>
           <h4 class="publication-text pull-left">
             {{publication.text}}
           </h4>
@@ -37,5 +42,5 @@
   </div>
 </div>
 
-<sidebar></sidebar>
+<sidebar (sended)="refresPublications($event)"></sidebar>
 <div class="clearfix"></div>

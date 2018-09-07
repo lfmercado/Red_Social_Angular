@@ -1,0 +1,36 @@
+<div id="publications">
+  <div *ngFor="let publication of publications" class="item-publication">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="image-user pull-left">
+          <a href="">
+            <img src="{{url + 'get-image-user/' + publication.user.image}}" class="avatar-exist" *ngIf="publication.user.image">
+            <img src="assets/user.png" class="avatar-default" *ngIf="!publication.user.image  ">
+          </a>
+        </div>        
+        <div class="user-name">{{publication.user.name+ ' ' + publication.user.surname}}</div>
+        <div class="date">{{(publication.created_at| amFromUnix)|amLocale:'es' | amTimeAgo }}</div>
+        <h4 class="publication-text pull-left">
+          {{publication.text}}
+        </h4>
+      </div>
+    </div>
+  </div>
+  <!--
+    Paginacion
+  
+  <ul class="pagination pull-right">
+      <li *ngIf="page > 1">
+        <a [routerLink]="['/time-line', previusPage]">Anterior</a>
+      </li>
+      <li *ngIf="pages != page">
+        <a [routerLink]="['/time-line', nextPage]">Siguiente</a>
+      </li>
+    </ul>-->
+</div>
+<div class="col-lg-12">
+  <p>
+<button (click)="viewMore()" class="btn btn-success" *ngIf="!noViewMore">
+  ¡Ver más publicaciones! 
+</button></p>
+</div>

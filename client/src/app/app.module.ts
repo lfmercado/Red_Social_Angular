@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
-import {HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,6 +16,7 @@ import { PeopleComponent } from './components/people/people.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UsersComponent } from './components/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { PublicationsComponent } from './components/publications/publications.component';
 
 @NgModule({
   declarations: [//Aqui se cargan los pipes y los componentes
@@ -25,14 +28,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     PeopleComponent,
     UserEditComponent,
     UsersComponent,
-    SidebarComponent
+    SidebarComponent,
+    PublicationsComponent
   ],
   imports: [//Aqui se cargan los modulos que se crean interna o extenamente
     BrowserModule,
     routing,
     FormsModule,
     //HttpModule
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [//Aqui se importar los servicios
     appRoutingProviders

@@ -207,3 +207,7 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 #publications{
     min-height: 500px; 
 }
+
+#publications .date{
+    color: gray;
+}   

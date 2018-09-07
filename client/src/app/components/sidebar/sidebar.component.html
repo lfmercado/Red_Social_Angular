@@ -61,7 +61,7 @@
       <div class="alert alert-danger" *ngIf="res==false">
         !!Error, no se ha podido publicar!!
       </div>
-<form action="" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)" class="col-lg-10">
+<form action="" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication($event)" class="col-lg-10">
   <p>
     <label>¿En que estas pensando?</label>
     <textarea name="text" id="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required></textarea>

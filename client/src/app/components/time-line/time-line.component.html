@@ -1,11 +1,17 @@
-<div class="col-lg-8">
-  <h1 class="h1-strong"> {{title}} 
+<div class="col-lg-8"  [@fadeLateral]>
+  <h1 class="h1-strong"> {{title}}
     <button class="btn btn-success btn-sm" (click)="refresPublications($event)">Refrescar Pub.</button>
   </h1>
- 
+
   <!--<publications></publications>   Componente de publicaciones-->
   <div id="publications">
     <div *ngFor="let publication of publications" class="item-publication">
+<!--
+      <body class="loading">
+        <section>
+        </section>
+      </body>-->
+
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="image-user pull-left">
@@ -13,7 +19,7 @@
               <img src="{{url + 'get-image-user/' + publication.user.image}}" class="avatar-exist" *ngIf="publication.user.image">
               <img src="assets/user.png" class="avatar-default" *ngIf="!publication.user.image  ">
             </a>
-          </div>        
+          </div>
           <div class="user-name">{{publication.user.name+ ' ' + publication.user.surname}}</div>
           <div class="date">{{(publication.created_at| amFromUnix)|amLocale:'es' | amTimeAgo }}</div>
           <h4 class="publication-text pull-left">
@@ -22,6 +28,7 @@
         </div>
       </div>
     </div>
+
     <!--
       Paginacion
     
@@ -36,9 +43,9 @@
   </div>
   <div class="col-lg-12">
     <p>
-  <button (click)="viewMore()" class="btn btn-success" *ngIf="!noViewMore">
-    ¡Ver más publicaciones! 
-  </button></p>
+      <button (click)="viewMore()" class="btn btn-success" *ngIf="!noViewMore">
+        ¡Ver más publicaciones!
+      </button></p>
   </div>
 </div>
 

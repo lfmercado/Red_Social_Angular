@@ -6,11 +6,14 @@ import { UserService } from '../../services/user.service';
 import { Global } from '../../services/Global.service';
 import { FollowService } from '../../services/follow.service';
 
+import { fadeLateral } from '../../animation';  
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
-  providers: [UserService, FollowService]
+  providers: [UserService, FollowService],
+  animations: [fadeLateral]
 })
 export class UsersComponent implements OnInit, DoCheck {
 

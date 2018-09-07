@@ -211,3 +211,21 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 #publications .date{
     color: gray;
 }   
+
+/*Animacion
+
+.loading {
+    background: url('../img/ico_loading.gif') no-repeat center center; /*Esta parte hará la función de cargador mientras aparece el contenido
+}
+section {
+    opacity: 0; El valor inicial de la opacidad del contenedor es 0, por medio de javascript haremos que aparezca al asignarle la clase .loaded_section
+    -webkit-transition:opacity .6s;
+    -moz-transition:opacity .6s;
+    -o-transition:opacity .6s;
+    transition: opacity .6s;
+}
+.loaded section {
+    opacity: 1;
+}
+ */
+ 

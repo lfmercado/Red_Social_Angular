@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+//Modulo de animacion
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
@@ -37,7 +40,8 @@ import { PublicationsComponent } from './components/publications/publications.co
     FormsModule,
     //HttpModule
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    BrowserAnimationsModule
   ],
   providers: [//Aqui se importar los servicios
     appRoutingProviders

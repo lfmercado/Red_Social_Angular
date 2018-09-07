@@ -4,12 +4,16 @@ import { UserService } from '../../services/user.service';
 import { Global } from '../../services/Global.service';
 import { Publication } from '../../models/publication.model';
 import { PublicationService } from '../../services/publication.service';
+
+import { fadeLateral } from '../../animation';  
+
 declare var $;
 @Component({
   selector: 'app-time-line',
   templateUrl: './time-line.component.html',
   styleUrls: ['./time-line.component.css'],
-  providers: [UserService, PublicationService]
+  providers: [UserService, PublicationService],
+  animations: [fadeLateral]
 })
 export class TimeLineComponent implements OnInit, DoCheck {
   

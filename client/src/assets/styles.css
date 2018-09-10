@@ -211,6 +211,11 @@ navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .
 #publications .date{
     color: gray;
 }   
+.message-default .panel-default .parrafo-pub{
+    font-size: 24px;
+    color: #6d5c5ccc
+}
+
 
 /*Animacion
 
@@ -243,3 +248,50 @@ section {
 }
 
  */
+
+
+ /*Perfil de usuario*/
+ /* Time Line*/
+#data-profile{
+    min-height: 300px; 
+    text-align: left;
+}
+
+#data-profile .avatar-profile{
+    overflow: hidden;
+    margin-right: 15px;
+    margin: 0px auto;
+}
+
+#data-profile .avatar-profile img{
+    width: 100%;
+    border-radius: 900px !important;
+    width: 250px !important;;
+    height: 250px !important;
+    
+}
+#data-profile .user-name{
+    margin-top: 40px;
+    margin-left: 10px;
+}
+#data-profile .user-name .name{
+    font-size: 22px;
+    font-weight: bold;
+    color: #555;
+}
+#data-profile .user-name .nick{
+    font-size: 24px;
+    font-weight: normal;
+    color: gray;
+}
+#data-profile .stats{
+    border-left: 4px solid #ccc;
+    margin-left: 35px;
+    padding-left: 25px;
+    height: 200px;
+}
+#data-profile .stats a{
+    font-size: 20px;
+    line-height: 50px;
+    color: #555;
+}

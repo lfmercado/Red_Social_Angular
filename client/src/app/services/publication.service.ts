@@ -31,6 +31,13 @@ export class PublicationService{
         return this._htpp.get(this.url + 'publications/'+ page, {headers: headers});
     }
 
+    getPublicationsUser(tokken,userId, page=1):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'Application/json')
+                                        .set('Authorization', tokken);
+        return this._htpp.get(this.url + 'publications-user/'+userId + '/' + page, {headers: headers});
+    }
+
+
     deletePublication(tokken, publicationId):Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'Application/json')
                                         .set('Authorization', tokken);

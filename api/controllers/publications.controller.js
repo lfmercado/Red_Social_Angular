@@ -69,6 +69,37 @@ function getPublications(req, res){
     });
 }
 
+//Obtener las publicaciones de un usuario
+function getPublicationsUser(req, res){
+    var page = 1;
+   
+    if(req.params.page != null && req.params.page != NaN){
+        page = req.params.page;
+    }
+    var itemsPerPage = 4;
+    var userId = req.user.sub;
+
+    if(req.params.userId){
+        userId = req.params.userId;
+    }
+    //Por medio de este push podemos ver nuestras publicaciones
+        //follows_clean.push(req.user.sub);        
+        
+        Publication.find({user:userId}).sort('-created_at').populate('user').paginate(page, itemsPerPage, (err, publications, total)=>{
+            if(err) return res.status(500).send({message: 'Error, no se han podido devolver las publicaiones'}); 
+            if(!publications) return res.status(404).send({message: 'Error, no hay publicaiones'}); 
+            return res.status(200).send({
+                total_items: total,
+                 pages: Math.ceil(total/itemsPerPage),
+                 itemsPerPage: itemsPerPage,
+                publications,
+                            
+            }); 
+        });
+  
+}
+
+
 function getPublication(req, res){
     var publicationId  = req.params.id;
 
@@ -165,6 +196,7 @@ module.exports = {
     prueba,
     savePublications,
     getPublications,
+    getPublicationsUser,
     getPublication,
     deletePublication,
     uploadImage,

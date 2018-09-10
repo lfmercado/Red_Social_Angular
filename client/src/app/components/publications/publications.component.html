@@ -1,4 +1,4 @@
-<div id="publications">
+<div id="publications" *ngIf="res == true">
   <div *ngFor="let publication of publications" class="item-publication">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -28,7 +28,15 @@
       </li>
     </ul>-->
 </div>
-<div class="col-lg-12">
+<div class="col-lg-8" class="message-default" *ngIf="res == false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <p class="parrafo-pub">¡¡Lo sentimos, este usuario no ha realizado una publicación hasta el momento!!</p>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-12" *ngIf="res == true">
   <p>
 <button (click)="viewMore()" class="btn btn-success" *ngIf="!noViewMore">
   ¡Ver más publicaciones! 

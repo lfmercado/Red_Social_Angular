@@ -51,7 +51,7 @@ Breve explicacion de las dependecias
          ** TypeScript Import
          ** vscode-faker
          ** Angular 6 Snippets - TypeScript, Html, Angular Material, ngRx, RxJS & Flex Layout
-         ** Beatify
+         ** Beautify
          *** Integrar la consola de comando en el editor de texto ***
                 ** file->preferences->settings
                 saldra una barra negra en la cual escribiremos "shell"

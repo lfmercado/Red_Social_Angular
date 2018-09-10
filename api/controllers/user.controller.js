@@ -231,9 +231,9 @@ function getCounter(req, res){
             followed: value.followed,
             following: value.following,
             publications: value.publications
-            })
+            })           
         });
-    }
+    }else{
     getCountFollows(req.user.sub).then((value)=>{
         return res.status(200).send({
             followed: value.followed,
@@ -241,10 +241,12 @@ function getCounter(req, res){
             publications: value.publications
         })
     });
+    }
 }
 
 
 async function getCountFollows(user_id){
+    try {   
     var following = await Follow.countDocuments({user : user_id}).exec()
     .then((count) => {
         return count;
@@ -275,6 +277,10 @@ async function getCountFollows(user_id){
          followed: followed,
          publications: publications
      }
+    }catch(e){
+        console.log(e);
+    }
+    
 }
 
 

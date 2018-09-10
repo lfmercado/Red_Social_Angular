@@ -1,15 +1,15 @@
 <div class="col-lg-4 sidebar-32">
-  <h1 class="h1-strong">Mis Datos</h1>
+  <h1 class="h1-strong">Hola, {{identity.name}}</h1>
 </div>
 <div id="user-card" class="col-lg-4 panel panel-default pull-left">
   <div class="sidebar-img pull-left">
-    <a href="">
+    <a [routerLink]="[ '/profile', identity._id ]">
       <img src="{{url + 'get-image-user/' + identity.image}}" class="avatar-exist" *ngIf="identity.image">
       <img src="assets/user.png" class="avatar-default" *ngIf="!identity.image">
     </a>
   </div>
   <div class="name-surname">
-    <a class="username">
+    <a  [routerLink]="[ '/profile', identity._id ]" class="username">
       {{identity.name + ' '+ identity .surname}}
     </a>
     <p class="nickname">{{identity.nick}}</p>

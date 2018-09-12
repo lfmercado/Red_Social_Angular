@@ -131,8 +131,8 @@ function uploadImage(req, res){
         var fileName = fileSplit[2];
         var extSplit = fileName.split('\.');
         var fileExt = extSplit[1];
-
-        if(fileExt == 'PNG' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif'){
+        //console.log(publicationId + '  Id de la publicacion a modificar');
+        if(fileExt == 'PNG' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif' || fileExt == 'png'){
 
             Publication.findOne({'user': req.user.sub, '_id': publicationId}).exec((err, publication)=>{
                 if(err){
@@ -140,9 +140,9 @@ function uploadImage(req, res){
                         message: 'Error, no se ha podido realizar la peticion!!'
                     });
                 }
-                console.log(publication);
+                //console.log(publication + 'La publicacion que encuenta para actualizar');
                 if(publication){
-                    Publication.findOneAndUpdate(publicationId, {file : fileName}, {new : true}, (err, publicationUpdate)=>{
+                    Publication.findByIdAndUpdate(publication._id, {file : fileName}, {new : true}, (err, publicationUpdate)=>{
                         if(err){
                             res.status(500).send({
                                 message: 'Error, no se ha podido realizar la peticion!!'
@@ -153,6 +153,7 @@ function uploadImage(req, res){
                             message: 'Error, no se ha podido actualizar el usuario'
                         });
                       }
+                      //console.log(publicationUpdate + 'La publicacion actualizada!');
                       return res.status(200).send({publication: publicationUpdate});
                     });
                 }else{

@@ -20,7 +20,7 @@
 
   <div class="stats" *ngIf="stats">
     <div class="following-data">
-      <a>
+      <a [routerLink]="[ '/following', identity._id, 1 ]">
         <span class="label-stats">
           Siguiendo
         </span>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="following-data">
-      <a>
+      <a  [routerLink]="[ '/followed', identity._id, 1 ]">
         <span class="label-stats">
           Seguidores
         </span>
@@ -61,7 +61,7 @@
       <div class="alert alert-danger" *ngIf="res==false">
         !!Error, no se ha podido publicar!!
       </div>
-<form action="" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication($event)" class="col-lg-10">
+<form action="" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)" class="col-lg-10">
   <p>
     <label>¿En que estas pensando?</label>
     <textarea name="text" id="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required></textarea>
@@ -71,7 +71,7 @@
   </p>
   <p>
     <label>Sube tu imagen</label>
-    <input type="file" placeholder="Subir Imagen" name="" id="">
+    <input type="file" placeholder="Subir Imagen" name="" (change)="fileChangeEvent($event)" accept="image/png, image/jpeg" id="">
   </p>
   <input type="submit" value="Publicar" class="btn btn-success" [disabled]="!newPubForm.form.valid">
 </form>

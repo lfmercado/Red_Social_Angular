@@ -71,7 +71,7 @@ export class PublicationsComponent implements OnInit, DoCheck {
             console.log(this.publications);
             //por medio de la libreria de Jquery hacemos que la pagina haga scroll automatico cada vez que
             //carguemos nuevas publicaciones
-            $("html, body").animate({scrollTop: $('body').prop("scrollHeight")},500);
+            $("html, body").animate({scrollTop: $('html').prop("scrollHeight")},500);
           }
           if (page > this.pages){
             this._router.navigate(['/time-line']);

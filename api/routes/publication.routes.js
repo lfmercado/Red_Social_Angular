@@ -16,7 +16,7 @@ api.get('/publications-user/:userId/:page?',mdAuth.ensureAuth, publicationContro
 api.get('/publication/:id',mdAuth.ensureAuth, publicationController.getPublication);
 api.delete('/publication/:id', mdAuth.ensureAuth, publicationController.deletePublication);
 api.post('/upload-image-pub/:id', [mdUpload, mdAuth.ensureAuth], publicationController.uploadImage);
-api.get('/get-image-pub/:imageFile', mdAuth.ensureAuth, publicationController.getImageFile);
+api.get('/get-image-pub/:imageFile', publicationController.getImageFile);
 
 
 module.exports = api;

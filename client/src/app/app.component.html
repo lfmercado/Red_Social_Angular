@@ -54,7 +54,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="">
+                <a  [routerLink]="[ '/profile', identity._id ]">
                   <span class="glyphicon glyphicon-user"></span>
                   Mi Perfil
                 </a>
@@ -62,7 +62,7 @@
               <li>
                   <a [routerLink]="['/user-edit']">
                       <span class="glyphicon glyphicon-cog"></span>
-                    Mis Datos
+                    Act. Mis Datos
                   </a>
                 </li>
                 <li>

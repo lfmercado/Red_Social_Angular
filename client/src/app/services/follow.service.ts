@@ -30,4 +30,34 @@ export class FollowService{
         return this._hhtp.delete(this.url + 'follow/' +userId, {headers: headers});
     }
 
+    getFollowing(tokken, id, page = 1):Observable<any>{
+                
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', tokken);
+
+        var url = this.url+'get-follows';
+    
+        if(id != null){
+         var url = this.url+'get-follows/'+ id+ '/'+ page;   
+        }
+        console.log(id);
+        
+        return this._hhtp.get(url, {headers:headers});
+    }
+
+    getFollowed(tokken, id, page = 1):Observable<any>{
+                
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', tokken);
+
+        var url = this.url+'get-follows-me';
+    
+        if(id != null){
+         var url = this.url+'get-follows-me/'+ id+ '/'+ page;   
+        }
+        console.log(id);
+        
+        return this._hhtp.get(url, {headers:headers});
+    }
+
 }

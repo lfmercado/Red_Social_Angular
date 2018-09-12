@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Global } from '../../services/Global.service';
@@ -12,7 +12,8 @@ declare var $;
   providers: [UserService, PublicationService]
 })
 export class PublicationsComponent implements OnInit, DoCheck {
-  
+
+  public res;
   public url;
   public tokken;
   public title;
@@ -24,6 +25,8 @@ export class PublicationsComponent implements OnInit, DoCheck {
   public total;
   public pages;
   public publications : Publication[];
+
+  @Input() userId:string; 
 
   constructor(
     private _userServive : UserService,
@@ -39,19 +42,25 @@ export class PublicationsComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.getPublications(this.page);
+    this.getPublications(this.userId,this.page);
     this.actualPage();
   }
   ngDoCheck(){
  
   }
-  getPublications(page, adding = false){
-    this._publicationService.getPublications(this.tokken, page).subscribe(
+  getPublications(userId, page, adding = false){
+    this._publicationService.getPublicationsUser(this.tokken,userId, page).subscribe(
       response =>{
         if(response.publications){
           this.total = response.total_items;
           this.pages = response.pages;
           this.itemsPerPage = response.itemsPerPage;
+          if(response.publications && response.publications.length < 1){
+            this.res = false;
+            console.log(this.res);
+          }else{
+            this.res = true;
+          }
           if(!adding){
             this.publications = response.publications;
           }else{
@@ -62,7 +71,7 @@ export class PublicationsComponent implements OnInit, DoCheck {
             console.log(this.publications);
             //por medio de la libreria de Jquery hacemos que la pagina haga scroll automatico cada vez que
             //carguemos nuevas publicaciones
-            $("html, body").animate({scrollTop: $('body').prop("scrollHeight")}, 500);
+            $("html, body").animate({scrollTop: $('html').prop("scrollHeight")},500);
           }
           if (page > this.pages){
             this._router.navigate(['/time-line']);
@@ -92,7 +101,7 @@ export class PublicationsComponent implements OnInit, DoCheck {
           if(this.previusPage <= 0) this.previusPage = 1;         
         }
         //Tomamos todos los usuarios que existan
-        this.getPublications(page);
+        this.getPublications(this.userId,page);
       });
   }
   public noViewMore = false;
@@ -101,7 +110,7 @@ export class PublicationsComponent implements OnInit, DoCheck {
     if(this.page == this.pages){
         this.noViewMore = true;
     }    
-    this.getPublications(this.page, true);
+    this.getPublications(this.userId, this.page, true);
   }
 
 }

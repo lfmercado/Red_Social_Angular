@@ -69,6 +69,37 @@ function getPublications(req, res){
     });
 }
 
+//Obtener las publicaciones de un usuario
+function getPublicationsUser(req, res){
+    var page = 1;
+   
+    if(req.params.page != null && req.params.page != NaN){
+        page = req.params.page;
+    }
+    var itemsPerPage = 4;
+    var userId = req.user.sub;
+
+    if(req.params.userId){
+        userId = req.params.userId;
+    }
+    //Por medio de este push podemos ver nuestras publicaciones
+        //follows_clean.push(req.user.sub);        
+        
+        Publication.find({user:userId}).sort('-created_at').populate('user').paginate(page, itemsPerPage, (err, publications, total)=>{
+            if(err) return res.status(500).send({message: 'Error, no se han podido devolver las publicaiones'}); 
+            if(!publications) return res.status(404).send({message: 'Error, no hay publicaiones'}); 
+            return res.status(200).send({
+                total_items: total,
+                 pages: Math.ceil(total/itemsPerPage),
+                 itemsPerPage: itemsPerPage,
+                publications,
+                            
+            }); 
+        });
+  
+}
+
+
 function getPublication(req, res){
     var publicationId  = req.params.id;
 
@@ -100,8 +131,8 @@ function uploadImage(req, res){
         var fileName = fileSplit[2];
         var extSplit = fileName.split('\.');
         var fileExt = extSplit[1];
-
-        if(fileExt == 'PNG' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif'){
+        //console.log(publicationId + '  Id de la publicacion a modificar');
+        if(fileExt == 'PNG' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif' || fileExt == 'png'){
 
             Publication.findOne({'user': req.user.sub, '_id': publicationId}).exec((err, publication)=>{
                 if(err){
@@ -109,9 +140,9 @@ function uploadImage(req, res){
                         message: 'Error, no se ha podido realizar la peticion!!'
                     });
                 }
-                console.log(publication);
+                //console.log(publication + 'La publicacion que encuenta para actualizar');
                 if(publication){
-                    Publication.findOneAndUpdate(publicationId, {file : fileName}, {new : true}, (err, publicationUpdate)=>{
+                    Publication.findByIdAndUpdate(publication._id, {file : fileName}, {new : true}, (err, publicationUpdate)=>{
                         if(err){
                             res.status(500).send({
                                 message: 'Error, no se ha podido realizar la peticion!!'
@@ -122,6 +153,7 @@ function uploadImage(req, res){
                             message: 'Error, no se ha podido actualizar el usuario'
                         });
                       }
+                      //console.log(publicationUpdate + 'La publicacion actualizada!');
                       return res.status(200).send({publication: publicationUpdate});
                     });
                 }else{
@@ -165,6 +197,7 @@ module.exports = {
     prueba,
     savePublications,
     getPublications,
+    getPublicationsUser,
     getPublication,
     deletePublication,
     uploadImage,

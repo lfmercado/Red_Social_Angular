@@ -23,6 +23,7 @@ export class TimeLineComponent implements OnInit, DoCheck {
   public identity;
   public itemsPerPage;
   public page;
+  public res;
   public nextPage;
   public previusPage;
   public total;
@@ -56,6 +57,14 @@ export class TimeLineComponent implements OnInit, DoCheck {
           this.total = response.total_items;
           this.pages = response.pages;
           this.itemsPerPage = response.itemsPerPage;
+
+          if(response.publications && response.publications.length < 1){
+            this.res = false;
+            console.log(this.res);
+          }else{
+            this.res = true;
+          }
+
           if(!adding){
             this.publications = response.publications;
           }else{
@@ -66,7 +75,7 @@ export class TimeLineComponent implements OnInit, DoCheck {
             console.log(this.publications);
             //por medio de la libreria de Jquery hacemos que la pagina haga scroll automatico cada vez que
             //carguemos nuevas publicaciones
-            $("html, body").animate({scrollTop: $('body').prop("scrollHeight")}, 500);
+            $("html, body").animate({scrollTop: $('html').prop("scrollHeight")}, 500);
             //$('.panel-body').slice();
 
           }
@@ -114,5 +123,25 @@ export class TimeLineComponent implements OnInit, DoCheck {
   refresPublications(event){
     this.getPublications(1);
   }
+  public showImage = false;
+  public pubId;
+  showPubImage(id){
+    this.showImage = true;
+    this.pubId = id;
+  }
+  hideImage(){
+    this.showImage = false;
+  }
 
+  deletePublication(id){
+    
+    this._publicationService.deletePublication(this.tokken, id).subscribe(
+      response => {
+        console.log('Publicacion Eliminada');
+        this.getPublications(this.page);
+      },
+     error =>{
+      if(error) console.log(error);
+    });
+  }
 }

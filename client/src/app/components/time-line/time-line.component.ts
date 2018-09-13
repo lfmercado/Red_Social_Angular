@@ -57,16 +57,14 @@ export class TimeLineComponent implements OnInit, DoCheck {
           this.total = response.total_items;
           this.pages = response.pages;
           this.itemsPerPage = response.itemsPerPage;
-
-          if(response.publications && response.publications.length < 1){
-            this.res = false;
-            console.log(this.res);
-          }else{
-            this.res = true;
-          }
-
           if(!adding){
             this.publications = response.publications;
+            if(response.publications.length <= 0){
+              this.res = false;
+              console.log(this.res);
+            }else{
+              this.res = true;
+            }
           }else{
             var array = this.publications;
             var arrayB = response.publications;
@@ -82,6 +80,8 @@ export class TimeLineComponent implements OnInit, DoCheck {
           if (page > this.pages){
             this._router.navigate(['/time-line']);
           }
+          
+
         }
       },
       error =>{

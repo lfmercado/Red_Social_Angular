@@ -1,10 +1,10 @@
-<div class="col-lg-8" [@fadeLateral] *ngIf="res == true">
+<div class="col-lg-8" id="publications-top" [@fadeLateral]>
   <h1 class="h1-strong"> {{title}}
     <button class="btn btn-success btn-sm" (click)="refresPublications($event)">Refrescar Pub.</button>
   </h1>
 
   <!--<publications></publications>   Componente de publicaciones-->
-  <div id="publications">
+  <div id="publications"  *ngIf="res == true">
     <div *ngFor="let publication of publications" class="item-publication">
       <!--
       <body class="loading">
@@ -66,13 +66,7 @@
       </div>
     </div>
 
-    <div class="col-lg-8" class="message-default" *ngIf="res == false">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <p class="parrafo-pub">¡¡Lo sentimos, hasta el momento no se han realizado publicaciones!!</p>
-        </div>
-      </div>
-    </div>
+    
     <!--
       Paginacion
     
@@ -84,6 +78,13 @@
           <a [routerLink]="['/time-line', nextPage]">Siguiente</a>
         </li>
       </ul>-->
+  </div>
+  <div class="col-lg-8" class="message-default" *ngIf="res == false">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p class="parrafo-pub">¡¡Lo sentimos, hasta el momento no se han realizado publicaciones!!</p>
+      </div>
+    </div>
   </div>
   <div class="col-lg-12" *ngIf="res == true">
     <p>

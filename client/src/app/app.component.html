@@ -47,6 +47,10 @@
           <li class="avatar" *ngIf="identity.image">
             <img src="{{url + 'get-image-user/' + identity.image}}">      
            </li>
+           <li class="avatar" *ngIf="!identity.image">
+            <img src="assets/user.png" >
+           </li>
+
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="">
               {{identity.name}}

@@ -147,7 +147,8 @@ function getUser(req, res){
                 res.status(404).send({
                     message: 'Error, el usuario no existe!!'
                 });
-      }  
+        }
+        else{
       ///Revisar si la persona que estoy buscando ya lo estoy siguiendo 
       followThisUser(req.user.sub,userId).then((value)=>{
         res.status(200).send({
@@ -155,7 +156,7 @@ function getUser(req, res){
             value
         });
       });
-         
+    }
     });
 }
 

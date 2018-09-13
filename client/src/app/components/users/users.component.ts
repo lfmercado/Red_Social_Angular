@@ -93,6 +93,11 @@ export class UsersComponent implements OnInit, DoCheck {
             }
             console.log(response);
           }
+
+          if(response.users.length == 1)
+          {
+            this.res = false;
+          }
       },
       error=>{
 

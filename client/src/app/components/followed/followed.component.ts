@@ -95,7 +95,7 @@ export class FollowedComponent implements OnInit, DoCheck {
             this.res = false;
           }else{
             this.total = response.total;
-            this.users = response.follows.followed;
+            this.users = response.followed;
             this.pages = response.pages;
             this.follows = response.follows;
             console.log(this.users);

@@ -59,5 +59,11 @@ export class FollowService{
         
         return this._hhtp.get(url, {headers:headers});
     }
+    getMyFollows(tokken):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', tokken);
+
+        return this._hhtp.get(this.url+'get-my-follows/' + true, {headers:headers});
+    }
 
 }

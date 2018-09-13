@@ -83,16 +83,61 @@ function getFollows(req, res) {
                     message: 'Error, No hay usuarios existentes!!'
                 });
             } else {
+                followsUsersId(req.user.sub).then((value)=>{
                 return res.status(200).send({
                     follows: follows,
+                    userFollowing: value.following,
+                    userFollowMe: value.followed,
                     total,
                     pages: Math.ceil(total / itemsPerPage)
                 });
+            });
             }
         }
     });
 
 }
+
+async function followsUsersId(user_id){
+    try {                                                      //De esta manera le quito los atributos de una consulta para no mostrarlos
+        var following = await Follow.find({ 'user': user_id}).select({'_id':0, '__v':0, 'user':0}).exec()
+            .then((follows) => {
+               return follows;
+            })
+            .catch((err)=>{
+                return console.log(err);
+            });
+
+        var followed = await Follow.find({'followed': user_id}).select({'_id':0, '__v':0, 'followed':0}).exec()
+            .then((followed) => {
+                return followed;
+            })
+            .catch((err)=>{
+                return console.log(err);
+            });  
+
+            //Capturo los following
+            var following_clean = [];
+            following.forEach((follow) => {
+                following_clean.push(follow.followed);
+            });
+        
+            //capturo los Followed
+            var followed_clean = [];
+                followed.forEach((follow) => {
+                    followed_clean.push(follow.user);
+                });
+                
+        return {
+            following: following_clean,
+            followed: followed_clean
+        }
+    } catch(e){
+        console.log(e);
+    }
+}
+
+
 
 function getFollowsMe(req, res) {
     var userId = req.user.sub;
@@ -119,10 +164,14 @@ function getFollowsMe(req, res) {
                 message: 'Error, No hay usuarios siguiendote!!'
             });
         }
-        return res.status(200).send({
-            follows,
-            total,
-            pages: Math.ceil(total / itemsPerPage)
+        followsUsersId(req.user.sub).then((value)=>{
+            return res.status(200).send({
+                follows: follows,
+                userFollowing: value.following,
+                userFollowMe: value.followed,
+                total,
+                pages: Math.ceil(total / itemsPerPage)
+            });
         });
     });
 }
@@ -182,11 +231,29 @@ function getFollowsMeNoList(req, res) {
     })
 }
 
+
+function getMyFollows(req, res){
+    var userId = req.user.sub;
+    var find = Follow.find({user: userId});
+    if(req.params.followed){
+        find = Follow.find({followed: userId});
+    }
+
+    find.populate('user followed').exec((err, follows)=>{
+        if(err) return res.status(500).send({message:'Error en el servidor'});
+
+        if(!follows) return res.status(404).send({message: 'Error, no sigues a ningun usuario'});
+
+        return res.status(200).send({follows});
+    });
+}
+
 module.exports = {
     saveFollows,
     deleteFollow,
     getFollows,
     getFollowsMe,
     getFollowsMeNoList,
-    getFollowsNoList
+    getFollowsNoList,
+    getMyFollows
 }

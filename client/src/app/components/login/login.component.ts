@@ -32,16 +32,18 @@ export class LoginComponent implements OnInit {
     this._userService.sigUp(this.user).subscribe(
       response =>{
         console.log(response);
-        if(response.user && response.user._id){
-          this.identity = response.user;
+        if(response.user && response.user._id != ""){
+          this.identity = response.user;          
           //Mantener la sesion iniciada
           this.getTokken();  
           localStorage.setItem('identity', JSON.stringify(this.identity));    
           this._router.navigate(['/']);
+          this.res = true;
         }else{
           this.res = false; 
           console.log('error');
         }
+
       },
       error => {
         console.log(<any>error);

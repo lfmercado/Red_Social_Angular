@@ -91,7 +91,7 @@ export class FollowingComponent implements OnInit, DoCheck {
   getfollows(userId, page){
     this._followService.getFollowing(this.tokken, userId, page).subscribe(
       response =>{
-        console.log(userId);
+        console.log(response);
           if(response.follows.length < 1){
             this.res = false;
             this.page = 0;
@@ -100,9 +100,9 @@ export class FollowingComponent implements OnInit, DoCheck {
             this.res = false;
           }else{
             this.total = response.total;
-            this.users = response.users;
+            this.following = response.follows;
             this.pages = response.pages;
-            this.follows = response.follows;
+            this.follows = response.userFollowing;
             console.log(this.follows);
             if(page > this.pages)
             {
@@ -155,8 +155,7 @@ export class FollowingComponent implements OnInit, DoCheck {
             this.follows.splice(search, 1)
             this.getCounters();
           }
-          this.follows.splice(search, 1)
-          this.getCounters();
+         
       },
       error =>{
         if(error) console.log(<any>error);

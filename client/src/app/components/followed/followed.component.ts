@@ -30,7 +30,7 @@ export class FollowedComponent implements OnInit, DoCheck {
   public pages;
   public users : User[];
 
-  public following;
+  public followed;
   public follows;
   public followUserOver;
 
@@ -95,10 +95,10 @@ export class FollowedComponent implements OnInit, DoCheck {
             this.res = false;
           }else{
             this.total = response.total;
-            this.users = response.followed;
+            this.followed = response.follows;
             this.pages = response.pages;
-            this.follows = response.follows;
-            console.log(this.users);
+            this.follows = response.userFollowing;
+            console.log(this.followed);
             console.log(this.follows);
             if(page > this.pages)
             {
@@ -150,8 +150,7 @@ export class FollowedComponent implements OnInit, DoCheck {
             this.follows.splice(search, 1)
             this.getCounters();
           }
-          this.follows.splice(search, 1)
-          this.getCounters();
+     
       },
       error =>{
         if(error) console.log(<any>error);

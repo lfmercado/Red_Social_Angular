@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MomentModule } from 'angular2-moment';
 
+//modulo de mensajes privados
+import { MessagesModule } from './messages/messages.module';
+
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -47,7 +51,8 @@ import { FollowedComponent } from './components/followed/followed.component';
     //HttpModule
     HttpClientModule,
     MomentModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MessagesModule
   ],
   providers: [//Aqui se importar los servicios
     appRoutingProviders

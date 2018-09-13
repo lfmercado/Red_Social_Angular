@@ -2,7 +2,7 @@
   <h1 class="h1-strong" *ngIf="user && title">{{title}}{{user.name}}</h1>
   <div id="followed" *ngIf="follows">
     
-    <div *ngFor="let follow of follows" class="item-user">
+    <div *ngFor="let follow of followed" class="item-user">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="image-user pull-left">
@@ -25,11 +25,11 @@
           
           <div class="pull-right">
             
-            <button class="btn btn-success" *ngIf="follows.indexOf(follow.user._id) >= 0" (click)="followUser(follow.user._id)">
+            <button class="btn btn-success" *ngIf="follows.indexOf(follow.user._id) < 0  && follow.user._id != identity._id" (click)="followUser(follow.user._id)">
               <span class="glyphicon glyphicon-plus-sign">
             </span>  Seguir</button>
             
-            <button class="btn btn-primary" *ngIf="follows.indexOf(follow.user._id) < 0 && follow.user._id != identity._id"
+            <button class="btn btn-primary" *ngIf="follows.indexOf(follow.user._id) >= 0 && follow.user._id != identity._id"
                (mouseenter)="mouseEnter(follow.user._id)" 
                (mouseleave)="mouseLeave(follow.user._id)" 
                (click)="unFollowUser(follow.user._id)"
@@ -60,10 +60,10 @@
     -->
     <ul class="pagination pull-right">
       <li *ngIf="page > 1">
-        <a [routerLink]="['/following', userPageId, previusPage]">Anterior</a>
+        <a [routerLink]="['/followed', userPageId, previusPage]">Anterior</a>
       </li>
       <li *ngIf="pages != page">
-        <a [routerLink]="['/following',userPageId, nextPage]">Siguiente</a>
+        <a [routerLink]="['/followed',userPageId, nextPage]">Siguiente</a>
       </li>
     </ul>
   </div>

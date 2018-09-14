@@ -46,21 +46,25 @@ export class AddComponent implements DoCheck, OnInit{
     }
 
     getMyFollows(){
-        this._followService.getMyFollows(this.tokken).subscribe(
+        this._followService.getFollowing(this.tokken,this.identity._id,1).subscribe(
             response =>{
+                console.log(response);
+                
                 this.follows = response.follows;
+                console.log(this.follows);
+                
             },
             error =>{
             if(error) console.log(<any>error);
         })
     }
-    onSubmit(){
+    onSubmit(form){
         console.log(this.message);
         this._messageService.addMessage(this.tokken, this.message).subscribe(
             response =>{
                 if(response.message){
                     this.res= true;
-                    
+                    form.reset();
                 }
             },
             error=>{

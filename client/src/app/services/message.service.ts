@@ -25,14 +25,14 @@ export class MessageService{
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                         .set('Authorization', tokken);
 
-        return this._http.get(this.url +'get-messages'+ page, {headers:headers});
+        return this._http.get(this.url +'get-messages/'+ page, {headers:headers});
     }
 
-    getSendedMessages(tokken, page =1):Observable<any>{
+    getSendedMessages(tokken, page = 1):Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
         .set('Authorization', tokken);
 
-        return this._http.get(this.url +'messages'+ page, {headers:headers});
+        return this._http.get(this.url +'messages/'+ page, {headers:headers});
     }
 
 

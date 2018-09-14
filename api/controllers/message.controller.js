@@ -49,7 +49,7 @@ function getReceiberMessage(req, res){
                 //mensaje           //por medio del metodo populate nos traemos
                                     //toda la informacion del remitente
                                     //en este caso, le decimos que datos queremos
-    Message.find({receiver: userId}).populate('emitter', 'name surname image nick _id').paginate(page, itemsPage, (err, messages, total)=>{
+    Message.find({receiver: userId}).populate('emitter', 'name surname image nick _id').sort('-created_at').paginate(page, itemsPage, (err, messages, total)=>{
         if(err) return res.status(500).send({message: 'Error, no se ha podido traer el mensaje'});
         if(!messages) return res.status(404).send({message: 'Error, no se hay mensajes'});
 
@@ -70,7 +70,7 @@ function getEmitterMessage(req, res){
         page = req.params.page;
     }
     var itemsPage = 4; 
-    Message.find({emitter: userId}).populate('emitter receiver', 'name surname image nick _id').paginate(page, itemsPage, (err, messages, total)=>{
+    Message.find({emitter: userId}).populate('emitter receiver', 'name surname image nick _id').sort('-created_at').paginate(page, itemsPage, (err, messages, total)=>{
         if(err) return res.status(500).send({message: 'Error, no se ha podido traer el mensaje'});
         if(!messages) return res.status(404).send({message: 'Error, no se hay mensajes'});
 

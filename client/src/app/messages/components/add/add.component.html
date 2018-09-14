@@ -1,12 +1,18 @@
 <div class="col-lg-10">
     <h3>{{title}}</h3>
-    <form #formAdd="ngForm" (ngSubmit)="onSubmit()">
+    <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+        <div class="alert alert-success" *ngIf="res">
+            !!El Usuario Se Ha Guardado Con Exito!! Puedes <a [routerLink]="['/messages/sended']">verlo aquí</a>
+        </div> 
+        <div class="alert alert-danger" *ngIf="res==false">
+            !!No se Ha podido entrar al sistema, usuario y/o contraseña incorrecto!!       
+        </div>
         <p>
             <label>Para: </label>
             <!--Listado de Seguidores-->
             <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control" required>
-                <option *ngFor="let follow of follows" value="{{follow.user._id}}" >
-                    {{follow.user.name + ' ' + follow.user.surname + '(' + follow.user.nick +')'}}
+                <option *ngFor="let follow of follows" value="{{follow.followed._id}}" >
+                    {{follow.followed.name + ' ' + follow.followed.surname + '(' + follow.followed.nick +')'}}
                 </option>
             </select>
         </p>

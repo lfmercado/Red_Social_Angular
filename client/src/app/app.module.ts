@@ -28,6 +28,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 
+//Servicios
+import { UserService } from './services/user.service';
+import { AdminGuard } from './services/user.guards';
+
 @NgModule({
   declarations: [//Aqui se cargan los pipes y los componentes
     AppComponent,
@@ -55,7 +59,9 @@ import { FollowedComponent } from './components/followed/followed.component';
     MessagesModule
   ],
   providers: [//Aqui se importar los servicios
-    appRoutingProviders
+    appRoutingProviders,
+    UserService,
+    AdminGuard
   ],//Aqui se carga el componente principal
   bootstrap: [AppComponent]
 })

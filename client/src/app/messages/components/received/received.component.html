@@ -1,3 +1,79 @@
 <div class="col-lg-10">
-    <h3>{{title}}</h3>
-</div>
+        <h3>{{title}}</h3>
+        <div id="followed">
+        
+                <div *ngFor="let message of messages" class="item-user">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <div class="image-user pull-left">
+                        <a  [routerLink]="[ '/profile', message.emitter._id ]">
+                          <img src="{{url + 'get-image-user/' + message.emitter.image}}" class="avatar-exist" *ngIf="message.emitter.image">
+                          <img src="assets/user.png" class="avatar-default" *ngIf="!message.emitter.image">
+                        </a>
+                      </div>
+                      <div class="user-name pull-left" *ngIf="message">
+                        <p class="name-surname">
+                          <a  [routerLink]="[ '/profile', message.emitter._id]">
+                            {{message.emitter.name + ' '+ message.emitter.surname}}
+                          </a>
+             
+                        </p>
+                        <p>
+                        <span class="nickname">{{(message.created_at| amFromUnix)|amLocale:'es' | amTimeAgo }}</span></p>
+                        <span class="date">{{message.text}}</span>
+                      </div>
+               
+                    </div>
+                  </div>
+                </div>
+                        <!--Botones para dejar de seguir o iniciar a seguir -->
+                    <!--
+                      <div class="pull-right">
+                        <button class="btn btn-success" *ngIf="messages.indexOf(message.followed._id) < 0  && message.followed._id != identity._id"   (click)="followUser(follow.followed._id)">
+                          <span class="glyphicon glyphicon-plus-sign">
+                        </span>  Seguir</button>
+                        
+                        <button class="btn btn-primary" *ngIf="follows.indexOf(follow.followed._id) >= 0 && follow.followed._id != identity._id"
+                           (mouseenter)="mouseEnter(follow.followed._id)" 
+                           (mouseleave)="mouseLeave(follow.followed._id)" 
+                           (click)="unFollowUser(follow.followed._id)"
+                           [class.btn-danger] ="follow.followed._id == followUserOver"
+                           
+                           >
+                          <span *ngIf="follow.followed._id == followUserOver; else following">
+                            <span class="glyphicon glyphicon-minus-sign"></span>Dejar de seguir
+                          </span>
+                          <ng-template #following>
+                          <span class="glyphicon glyphicon-ok-sign"></span> Siguiendo
+                          </ng-template>
+                        </button>
+                      </div>
+    
+    
+                    </div>
+                  </div>
+              </div>
+              <div class="col-lg-8" class="message-default" *ngIf="res == false">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                    <p class="parrafo-pub">¡¡Lo sentimos, hasta el momento no sigues a ningun usuario!!
+                      <br>
+                   Te invitamos a seguir a alguien
+                    <a [routerLink]="['/users']"> aquí</a></p>
+                  </div>
+                </div>
+                </div>-->
+              
+                <!--
+                  Paginacion
+                -->
+                <ul class="pagination pull-right">
+                  <li *ngIf="page > 1">
+                    <a [routerLink]="['/messages/received', previusPage]">Anterior</a>
+                  </li>
+                  <li *ngIf="pages != page">
+                    <a [routerLink]="['/messages/received', nextPage]">Siguiente</a>
+                  </li>
+                </ul>
+              </div>
+    </div>

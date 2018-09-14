@@ -31,14 +31,14 @@ export class TimeLineComponent implements OnInit, DoCheck {
   public publications : Publication[];
 
   constructor(
-    private _userServive : UserService,
+    private _userService : UserService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _publicationService: PublicationService
   ) { 
     this.url = Global.url;
-    this.identity = this._userServive.getIdentity();
-    this.tokken = this._userServive.getTokken();
+    this.identity = this._userService.getIdentity();
+    this.tokken = this._userService.getTokken();
     this.title = "TimeLine";
  
   }
@@ -137,11 +137,30 @@ export class TimeLineComponent implements OnInit, DoCheck {
     
     this._publicationService.deletePublication(this.tokken, id).subscribe(
       response => {
+        console.log(response);
+        console.log(id);
         console.log('Publicacion Eliminada');
         this.getPublications(this.page);
+        this.getCounters();
       },
      error =>{
       if(error) console.log(error);
     });
+  }
+
+  getCounters() {
+
+    this._userService.getCounter().subscribe(
+      response => {
+        //console.log(response);
+        if (response.following != undefined) {
+          localStorage.setItem('stats', JSON.stringify(response));
+          this.res = true;
+        }
+      },
+      error => {
+        this.res = false;
+        console.log(error);
+      });
   }
 }

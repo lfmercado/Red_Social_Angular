@@ -1,9 +1,6 @@
 <div class="col-lg-5">
     <h1 class="h1-strong">{{title}}</h1>
     <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12" >
-      <div class="alert alert-success" *ngIf="res">
-        !!El Usuario Se Ha Guardado Con Exito!! Puedes <a [routerLink]="['/login']">Loguearte Aquí</a>
-      </div> 
       <div class="alert alert-danger" *ngIf="res==false">
         !!No se Ha podido entrar al sistema, usuario y/o contraseña incorrecto!!
       </div>

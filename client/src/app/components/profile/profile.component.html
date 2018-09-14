@@ -13,9 +13,11 @@
       <div class="pull-left">
       <p class="name">{{user.name + ' ' + user.surname}}</p>
       <p class="nick">{{user.nick}}</p>
+      <p class="nick">{{user.profession}}</p>
       <p class="nick">{{user.email}}</p>
+      <br>
+      
       </div>
-   
       <div class="clearfix"></div>
 
         <div class="follow pull-left"> 
@@ -60,19 +62,32 @@
 </div>
 
 <div class="following-data">
-  <a>
+  <p>
     <span class="label-stats">
       Publicaciones
     </span>
     <span class="number-stats">
       {{stats.publications}}
     </span>
-  </a>
+  </p>
 </div>
 </div>
   
     
   </div>
+
+  <div class="clearfix"></div>
+  <div class="panel panel-default" *ngIf="user">
+      <div class="panel-body">
+      <div class="description-pro col-lg-12 pull-left"  ALIGN="justify">
+         <p>Descripción Profesional</p>
+          <div *ngIf="user.description != null">{{user.description}}</div>
+          <div *ngIf="!user.description">¡Este usuario no tiene un perfil profesional hasta el momento!</div>
+      </div>
+    </div>
+    </div>
+
+  <div class="clearfix"></div>
   <div class="col-lg-12" *ngIf="user">
     <publications [userId]="user._id"></publications>
   </div>

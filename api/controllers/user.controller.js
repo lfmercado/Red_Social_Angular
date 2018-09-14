@@ -31,6 +31,8 @@ function saveUser (req, res){
         user.surname = params.surname;
         user.nick = params.nick;
         user.email = params.email;
+        user.profession = null;
+        user.description = null;
         user.role = 'ROLE_USER';
         user.image = null;
         /**
@@ -329,6 +331,8 @@ function updateUser(req, res){
     var params = req.body;
     //Borramos la propiedad password ya que esta no se podra modificar desde esta vista!!
     delete params.password;
+//    console.log(req.body);
+
     if(userId != req.user.sub){
         return res.status(500).send({
             message: 'Error, no posees los permisos para modificar los datos de otro usuario!!'
@@ -341,8 +345,7 @@ function updateUser(req, res){
         });
         if(user_isset) return res.status(404).send('Error, no se puede actualizar el registro, los Id´s no son iguales');
 
-            else{
-                
+            else{                
                 User.findByIdAndUpdate(userId, params, {new : true}, (err, userUpdate)=>{
                     if(err){
                         res.status(500).send({

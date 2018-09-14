@@ -74,7 +74,7 @@ export class PublicationsComponent implements OnInit, DoCheck {
             $("html, body").animate({scrollTop: $('html').prop("scrollHeight")},500);
           }
           if (page > this.pages){
-            this._router.navigate(['/time-line']);
+            this._router.navigate(['/profile', this.identity._id]);
           }
         }
       },

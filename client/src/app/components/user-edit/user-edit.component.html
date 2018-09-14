@@ -18,6 +18,16 @@
       <span *ngIf="!surname.valid && surname.touched">¡¡El apellido es obligatorio!!</span>
     </p>
     <p>
+      <label>Profesion</label>
+      <input name="profession" #profession="ngModel" [(ngModel)]="user.profession" class="form-control" required>
+      <span *ngIf="!profession.valid && profession.touched">¡¡La profesion es obligatorio!!</span>
+    </p>
+    <p>
+      <label>Descripcion Profesional</label>
+      <textarea type="text" name="description" #description="ngModel" [(ngModel)]="user.description" class="form-control" required></textarea>
+      <span *ngIf="!description.valid && description.touched">¡¡la descriccion es obligatorio!!</span>
+    </p>
+    <p>
       <label>Apodo</label>
       <input type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" class="form-control" required>
       <span *ngIf="!nick.valid && nick.touched">¡¡El apodo es obligatorio!!</span>

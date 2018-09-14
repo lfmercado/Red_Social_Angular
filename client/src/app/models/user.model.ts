@@ -3,6 +3,8 @@ export class User{
         public _id: string,
         public name: string,
         public surname: string,
+        public description: string,
+        public profession: string,
         public nick: string,
         public password: string,
         public role: string,

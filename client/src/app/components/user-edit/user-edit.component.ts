@@ -31,7 +31,6 @@ export class UserEditComponent implements OnInit {
     this.tokken = this._userService.getTokken();
     this.user = this.identity;
     this.url = Global.url;
-    console.log(this.url); 
     
   }
 
@@ -44,7 +43,9 @@ export class UserEditComponent implements OnInit {
   onSubmit(){
     this._userService.updateUser(this.user).subscribe(
       response =>{
-        console.log(response);
+        console.log(this.user);
+        console.log(response); 
+        
         if(!response.userUpdate){
           this.res = false;
         }else{
@@ -58,7 +59,6 @@ export class UserEditComponent implements OnInit {
               .then((result:any) =>{
                 this.user.image = result.userUpdate.image;
                 localStorage.setItem('identity', JSON.stringify(this.user));
-                console.log(this.user);
               });
             }
         }

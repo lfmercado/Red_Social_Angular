@@ -77,6 +77,7 @@ export class UserService{
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                         .set('Authorization', this.getTokken());
+        console.log(user);
         
         return this._http.put(this.url + 'user-update/'+ user._id , params, {headers: headers})
 

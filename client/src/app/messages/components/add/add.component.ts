@@ -54,4 +54,20 @@ export class AddComponent implements DoCheck, OnInit{
             if(error) console.log(<any>error);
         })
     }
+    onSubmit(){
+        console.log(this.message);
+        this._messageService.addMessage(this.tokken, this.message).subscribe(
+            response =>{
+                if(response.message){
+                    this.res= true;
+                    
+                }
+            },
+            error=>{
+                if(error){
+                    console.log(<any>error);
+                    this.res =false;
+                }
+        });
+    }
 }

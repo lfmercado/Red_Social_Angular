@@ -298,6 +298,11 @@ section {
     color: #555;
 }
 
+#data-profile .stats p{
+    font-size: 20px;
+    line-height: 50px;
+    color: #555;
+}
 
 .imagen-publicacion {
     text-align: center;
@@ -313,4 +318,16 @@ section {
 #followed {
     min-height: 500px;
  
+}
+
+.description-pro{
+    font-size: 18px;
+    line-height: 20px;
+}
+
+#register p span{
+    padding: 3px;
+    background: red;
+    color: white;
+    font-size: 14px;
 }

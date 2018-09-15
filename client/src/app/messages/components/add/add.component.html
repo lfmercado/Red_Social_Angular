@@ -2,10 +2,10 @@
     <h3>{{title}}</h3>
     <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
         <div class="alert alert-success" *ngIf="res">
-            !!El Usuario Se Ha Guardado Con Exito!! Puedes <a [routerLink]="['/messages/sended']">verlo aquí</a>
+            !!El Mensaje Se Ha Enviado Con Exito!! Puedes <a [routerLink]="['/messages/sended']">verlo aquí</a>
         </div> 
         <div class="alert alert-danger" *ngIf="res==false">
-            !!No se Ha podido entrar al sistema, usuario y/o contraseña incorrecto!!       
+            !!No se Ha podido enviar el Mensaje!!       
         </div>
         <p>
             <label>Para: </label>

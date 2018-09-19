@@ -82,7 +82,8 @@
       <div class="description-pro col-lg-12 pull-left"  ALIGN="justify">
          <p>Descripción Profesional</p>
           <div *ngIf="user.description != null">{{user.description}}</div>
-          <div *ngIf="!user.description">¡Este usuario no tiene un perfil profesional hasta el momento!</div>
+          <div *ngIf="!user.description && identity._id != user._id">¡Este usuario no tiene un perfil profesional hasta el momento!</div>
+          <div *ngIf="!user.description && identity._id == user._id">¡No tienes un perfil profesional hasta el momento!</div>
       </div>
     </div>
     </div>

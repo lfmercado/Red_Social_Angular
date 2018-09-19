@@ -54,9 +54,7 @@ export class SendedComponent implements DoCheck, OnInit{
             response =>{
 
                 if(response.messages){
-                    console.log(response);                    
                     this.messages = response.messages;
-                    console.log(this.messages);
                     this.total = response.total;
                     this.pages = response.pages;
 
@@ -64,7 +62,6 @@ export class SendedComponent implements DoCheck, OnInit{
                         this.messages = response.messages;
                         if(response.messages.length <= 0){
                           this.res = false;
-                          console.log(this.res);
                         }else{
                           this.res = true;
                         }
@@ -73,7 +70,6 @@ export class SendedComponent implements DoCheck, OnInit{
                         var arrayB = response.messages;
                                             //con el concat le añado elementos al array
                         this.messages = array.concat(arrayB)
-                        console.log(this.messages);
                         //por medio de la libreria de Jquery hacemos que la pagina haga scroll automatico cada vez que
                         //carguemos nuevas publicaciones
                         $("html, body").animate({scrollTop: $('html').prop("scrollHeight")}, 500);

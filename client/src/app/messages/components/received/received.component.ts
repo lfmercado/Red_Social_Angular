@@ -53,11 +53,9 @@ export class ReceivedComponent implements DoCheck, OnInit{
     getMessages(tokken, page, adding = false){
         this._messageService.getMyMessages(this.tokken, page).subscribe(
             response =>{
-
+                             
                 if(response.messages){
-                    console.log(response);                    
                     this.messages = response.messages;
-                    console.log(this.messages);
                     this.total = response.total;
                     this.pages = response.pages;
 
@@ -74,7 +72,6 @@ export class ReceivedComponent implements DoCheck, OnInit{
                         var arrayB = response.messages;
                                             //con el concat le añado elementos al array
                         this.messages = array.concat(arrayB)
-                        console.log(this.messages);
                         //por medio de la libreria de Jquery hacemos que la pagina haga scroll automatico cada vez que
                         //carguemos nuevas publicaciones
                         $("html, body").animate({scrollTop: $('html').prop("scrollHeight")}, 500);
@@ -124,7 +121,7 @@ export class ReceivedComponent implements DoCheck, OnInit{
           this.previusPage = this.page - 1;
           if(this.previusPage <= 0) this.previusPage = 1;         
         }
-        //Tomamos todos los usuarios que existan
+        //Tomamos todos los mensajes que existan
         this.getMessages(this.tokken, this.page);
         this.setMessageViewed();
       });

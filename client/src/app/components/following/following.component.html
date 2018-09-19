@@ -50,10 +50,16 @@
   <div class="col-lg-8" class="message-default" *ngIf="res == false">
       <div class="panel panel-default">
         <div class="panel-body">
-        <p class="parrafo-pub">¡¡Lo sentimos, hasta el momento no sigues a ningun usuario!!
+        <p *ngIf=" user._id == identity._id" class="parrafo-pub">¡¡Lo sentimos, hasta el momento no sigues a ningun usuario!!
           <br>
        Te invitamos a seguir a alguien
         <a [routerLink]="['/users']"> aquí</a></p>
+
+        <p *ngIf=" user._id != identity._id" class="parrafo-pub">¡¡Lo sentimos, hasta el momento este usuario no sigue a nadie!!
+          <br>
+       Te invitamos a seguir a alguien
+        <a [routerLink]="['/users']"> aquí</a></p>
+
       </div>
     </div>
     </div>

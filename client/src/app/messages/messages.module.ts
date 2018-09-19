@@ -11,19 +11,22 @@ import { ReceivedComponent } from './components/received/received.component';
 import { MainComponent } from './components/main/main.component';
 import { SendedComponent } from './components/sended/sended.component';
 
+
 //Rutas
 import { MessagesRoutingModule } from './messages.routing';
 
 //Servicios
 import { UserService } from '../services/user.service';
 import { AdminGuard } from '../services/user.guards';
+import { AddToComponent } from './components/addTo/addTo.component';
 
 @NgModule({
     declarations:[
         MainComponent,
         SendedComponent,
         ReceivedComponent,
-        AddComponent
+        AddComponent,
+        AddToComponent
     ],
     imports:[
         CommonModule,
@@ -35,7 +38,8 @@ import { AdminGuard } from '../services/user.guards';
         MainComponent,
         SendedComponent,
         ReceivedComponent,
-        AddComponent
+        AddComponent,
+        AddToComponent
     ],
     providers:[
         UserService,

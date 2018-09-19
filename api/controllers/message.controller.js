@@ -85,7 +85,6 @@ function getEmitterMessage(req, res){
 //Ver todos los mensajes que no hemos leido
 function getUnviewedMessages(req, res){
     var userId = req.user.sub;
-
     Message.countDocuments({receiver: userId, viewed: 'false'}).exec((err, count)=>{
         if(err) return res.status(500).send({message: 'Error, no se ha podido traer el mensaje'});  
         

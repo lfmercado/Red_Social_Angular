@@ -1,0 +1,27 @@
+<div class="col-lg-10">
+    <h3>{{title}}</h3>
+    <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+        <div class="alert alert-success" *ngIf="res">
+            !!El Usuario Se Ha Guardado Con Exito!! Puedes <a [routerLink]="['/messages/sended']">verlo aquí</a>
+        </div> 
+        <div class="alert alert-danger" *ngIf="res==false">
+            !!No se Ha podido entrar al sistema, usuario y/o contraseña incorrecto!!       
+        </div>
+        <p>
+            <label>Para: </label>
+            <input  type="text" *ngIf="user" name="receiver" value="{{user.name + ' '+ user.surname}}" #receiver="ngModel" [(ngModel)]="user.name + ' ' + user.surname" class="form-control" required readonly>
+            <!--Listado de Seguidores
+            <select *ngIf="user" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control" required>
+                <option  value="{{user._id}}" >
+                    {{user.name + ' '+ user.surname}}
+                </option>
+            </select>-->
+        </p>
+        <p>
+            <label>Mensaje</label>
+            <textarea name="text" #text="ngModel" [(ngModel)]="message.text" class="form-control" required></textarea>
+            <span *ngIf="!text.valid && text.touched">¡¡El mensaje es requerido!!</span>
+        </p>
+        <input type="submit" value="Enviar" class="btn btn-success"/>
+    </form>
+</div>

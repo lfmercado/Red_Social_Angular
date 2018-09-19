@@ -25,10 +25,16 @@
             People
           </a>
         </li>
-        <li>
+        <li *ngIf="actNotificacion == false && unviewed">
+          <a [routerLink]="['/messages']" [routerLinkActive]="['active']">
+            <span class="glyphicon glyphicon-envelope" ></span>
+            Mensajes
+          </a>
+        </li>
+        <li *ngIf="actNotificacion == true && unviewed">
             <a [routerLink]="['/messages']" [routerLinkActive]="['active']">
-              <span class="glyphicon glyphicon-envelope" ></span>
-              Mensajes
+              <span class="notificacion glyphicon glyphicon-envelope" ></span>
+              Mensajes {{unviewed.unviewed}}
             </a>
           </li>
       </ul>

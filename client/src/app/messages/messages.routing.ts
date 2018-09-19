@@ -8,6 +8,7 @@ import { MainComponent } from './components/main/main.component';
 import { SendedComponent } from './components/sended/sended.component';
 
 import { AdminGuard } from '../services/user.guards';
+import { AddToComponent } from './components/addTo/addTo.component';
 
 const messagesRoutes: Routes =[
     {
@@ -17,6 +18,7 @@ const messagesRoutes: Routes =[
         children:[
             {path: '', redirectTo: 'received', pathMatch: 'full'},
             {path: 'send', component: AddComponent, canActivate:[AdminGuard]},
+            {path: 'sendTo/:id', component: AddToComponent, canActivate:[AdminGuard]},
             {path: 'received', component: ReceivedComponent, canActivate:[AdminGuard]},
             {path: 'received/:page', component: ReceivedComponent, canActivate:[AdminGuard]},
             {path: 'sended', component: SendedComponent, canActivate:[AdminGuard]},

@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
+import { MessageService } from '../../services/message.service';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [ UserService]
+  providers: [ UserService, MessageService]
 })
 export class LoginComponent implements OnInit {
   public title;
@@ -15,14 +17,15 @@ export class LoginComponent implements OnInit {
   public res: boolean;
   public identity;
   public tokken;
-
+  public unviewed;
   constructor(
     private _route : ActivatedRoute,
     private _router: Router,
-    private _userService: UserService
+    private _userService: UserService,
+    private _messageService: MessageService
   ) { 
     this.title ="Login";
-    this.user = new User('','','','','','','','ROLE_USER','');
+    this.user = new User('','','','','','','','ROLE_USER','', '');
   }
 
   ngOnInit() {
@@ -36,6 +39,7 @@ export class LoginComponent implements OnInit {
           this.identity = response.user;          
           //Mantener la sesion iniciada
           this.getTokken();  
+          
           localStorage.setItem('identity', JSON.stringify(this.identity));    
           this._router.navigate(['/']);
           this.res = true;
@@ -58,6 +62,7 @@ export class LoginComponent implements OnInit {
         if(this.tokken != null && this.tokken != undefined){
           localStorage.setItem('tokken',this.tokken);
           this.getCounters();
+          
         }
       },
       error => {
@@ -80,4 +85,5 @@ export class LoginComponent implements OnInit {
         console.log(error);
       });
   }
+
 }

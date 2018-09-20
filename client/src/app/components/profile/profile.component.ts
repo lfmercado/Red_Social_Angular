@@ -48,6 +48,11 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  mesajePara(id){
+    console.log(id);
+    this._router.navigate(['/messages/sendTo/'+ id]);
+  }
+
   getUser(id){
     this._userService.getUser(id).subscribe(
       response =>{

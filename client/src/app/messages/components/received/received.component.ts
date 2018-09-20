@@ -123,6 +123,7 @@ export class ReceivedComponent implements DoCheck, OnInit{
         }
         //Tomamos todos los mensajes que existan
         this.getMessages(this.tokken, this.page);
+        this.setMessageViewed();
       });
   }
   public noViewMore = false;
@@ -132,5 +133,18 @@ export class ReceivedComponent implements DoCheck, OnInit{
         this.noViewMore = true;
     }    
     this.getMessages(this.tokken, true);
+  }
+
+  setMessageViewed(){
+
+    this._messageService.setViewedMessages(this.tokken).subscribe(
+        response =>{
+            console.log(response);            
+        },
+        error =>{
+            if(error) console.log(<any>error);
+            
+        }
+    )
   }
 }

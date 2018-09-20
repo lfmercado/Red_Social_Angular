@@ -7,6 +7,7 @@ import { Message } from '../models/message.model';
 @Injectable()
 export class MessageService{
     public url:string;
+    public messages;
     constructor(
         private _http: HttpClient
     ){
@@ -30,10 +31,32 @@ export class MessageService{
 
     getSendedMessages(tokken, page = 1):Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
-        .set('Authorization', tokken);
+                                        .set('Authorization', tokken);
 
         return this._http.get(this.url +'messages/'+ page, {headers:headers});
     }
 
+    getUnviewedMessages(tokken):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','applicacion/json') 
+                                        .set('Authorization', tokken);
 
+        return this._http.get(this.url + 'unviewed-messages', {headers:headers});
+    }
+
+    getMessagesUnviewed(){
+        let messages = JSON.parse(localStorage.getItem('unviewed'));
+        if(messages != undefined){
+            this.messages = messages;
+        }else{
+            this.messages = null;
+        }
+        return this.messages;
+    }
+
+    setViewedMessages(tokken):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','applicacion/json') 
+                                        .set('Authorization', tokken);
+
+        return this._http.get(this.url + 'set-viewed-messages', {headers:headers});
+    }
 }

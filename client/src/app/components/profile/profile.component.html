@@ -36,6 +36,15 @@
         </span>
         <ng-template #following>Siguiendo</ng-template> 
       </button>
+
+      
+      <button  class="btn btn-success" style="margin-left: 5px" *ngIf="user && user._id != identity._id" (click)="mesajePara(user._id)">
+        <span >
+          Enviar Mensaje
+        </span>
+        <!--<ng-template *ngIf="user._id != identity._id" #following>Enviar Mensaje </ng-template> -->
+      </button>
+
     </div>
   </div>
   <div class="stats pull-right" *ngIf="stats">
@@ -82,8 +91,8 @@
       <div class="description-pro col-lg-12 pull-left"  ALIGN="justify">
          <p>Descripción Profesional</p>
           <div *ngIf="user.description != null">{{user.description}}</div>
-          <div *ngIf="!user.description && identity._id != user._id">¡Este usuario no tiene un perfil profesional hasta el momento!</div>
-          <div *ngIf="!user.description && identity._id == user._id">¡No tienes un perfil profesional hasta el momento!</div>
+          <div *ngIf="!user.description && user._id != identity._id">¡Este usuario no tiene un perfil profesional hasta el momento!</div>
+          <div *ngIf="!user.description && user._id == identity._id">¡Hasta ahora no has agregado un perfil profesional!</div>
       </div>
     </div>
     </div>

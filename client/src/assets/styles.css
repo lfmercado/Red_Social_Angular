@@ -11,12 +11,12 @@
 .navigation{
     margin: 0px;
     padding: 0px !important;
-    
 }
 .navigation .navbar{
     border-radius: 0px;
     background: #0079a1 !important;
     border:none;
+    
 }
 .active{
     background: #023e52 !important;
@@ -330,4 +330,13 @@ section {
     background: red;
     color: white;
     font-size: 14px;
+}
+
+.notificacion{
+    background: red !important;
+    color: white !important;
+}
+.notificacion span{
+    background: red !important;
+    color: white !important;
 }

@@ -3,10 +3,10 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="image-user pull-left">
-          <a href="">
+          <p>
             <img src="{{url + 'get-image-user/' + publication.user.image}}" class="avatar-exist" *ngIf="publication.user.image">
             <img src="assets/user.png" class="avatar-default" *ngIf="!publication.user.image  ">
-          </a>
+          </p>
         </div>        
         <div class="user-name">{{publication.user.name+ ' ' + publication.user.surname}}</div>
         <div class="date">{{(publication.created_at| amFromUnix)|amLocale:'es' | amTimeAgo }}</div>

@@ -21,6 +21,6 @@
             <textarea name="text" #text="ngModel" [(ngModel)]="message.text" class="form-control" required></textarea>
             <span *ngIf="!text.valid && text.touched">¡¡El mensaje es requerido!!</span>
         </p>
-        <input type="submit" value="Enviar" class="btn btn-success"/>
+        <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!formAdd.form.valid"/>
     </form>
 </div>

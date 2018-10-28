@@ -1,17 +1,17 @@
 'use strict'
 
-var path = require('path');
+var path = require('path'); // para identificar las extensiones de los archivos 
 var fs = require('fs');
-var mongoosePagination = require('mongoose-pagination');
+var mongoosePagination = require('mongoose-pagination'); //metodo para paginar la cantidad de elementos que retorna la BDD
 
 var User = require('../models/user.model');
 var Follow = require('../models/follows.model');
 
-function saveFollows(req, res) {
-    var params = req.body;
+function saveFollows(req, res) { //Función para guardar seguidores
+    var params = req.body; //toma los datos que envía el front
     var follow = new Follow();
 
-    follow.user = req.user.sub;
+    follow.user = req.user.sub; //Id que toma el backend por medio del token
     follow.followed = params.followed;
     if (!params.followed) {
         return res.status(200).send({

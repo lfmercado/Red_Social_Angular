@@ -25,6 +25,7 @@ function prueba (req, res ){
 function saveUser (req, res){
     var params = req.body;
     var user = new User();
+   
     //Reviso que si tenga todos los campos requeridos
     if(params.name && params.surname && params.nick && params.email && params.password){
         user.name = params.name;
@@ -75,6 +76,7 @@ function saveUser (req, res){
                                 });
                             }else{
                                 if(userSaved){
+                                    
                                     res.status(200).send({
                                         user: userSaved
                                     });

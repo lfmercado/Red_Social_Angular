@@ -37,7 +37,7 @@ export class MessageService{
     }
 
     getUnviewedMessages(tokken):Observable<any>{
-        let headers = new HttpHeaders().set('Content-Type','applicacion/json') 
+        let headers = new HttpHeaders().set('Content-Type', 'application/json') 
                                         .set('Authorization', tokken);
 
         return this._http.get(this.url + 'unviewed-messages', {headers:headers});

@@ -8,7 +8,7 @@ import { Global } from './Global.service';
 @Injectable()
 export class UserService{
     public url: string;
-    public identity;
+    public identity; 
     public tokken;
     public stats;
     constructor(

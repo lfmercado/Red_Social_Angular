@@ -48,5 +48,10 @@
       <span *ngIf="!password.valid && password.touched">¡¡La contraseña es obligatoria!!</span>
     </p>
     <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!registerForm.form.valid">
+    <div class="form-group m-b-0">
+      <div class="col-sm-12 text-center">
+          ¿Posees una cuenta? <a [routerLink]="[ '/login']" class="text-primary m-l-5"><b>Inicia sesión</b></a>
+      </div>
+  </div>
   </form>
 </div>

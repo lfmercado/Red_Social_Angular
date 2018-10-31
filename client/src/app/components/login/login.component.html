@@ -18,6 +18,12 @@
         <span *ngIf="!password.valid && password.touched">¡¡La contraseña es obligatoria!!</span>
       </p>
       <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!loginForm.form.valid">
+      <div class="form-group m-b-0">
+        <div class="col-sm-12 text-center">
+            ¿No tienes una cuenta? <a [routerLink]="[ '/register']" class="text-primary m-l-5"><b>Creala aquí</b></a>
+        </div>
+    </div>
       </div>
+      
     </form>
   </div>

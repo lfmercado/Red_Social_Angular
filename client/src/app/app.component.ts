@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, DoCheck {
       console.log(this.unviewed2);
     }
     //this.getUnviewedMessages(this.tokken);
-//    this.getPublication(1);
+    //this.getPublication(1);
   }
 
 

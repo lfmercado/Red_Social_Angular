@@ -3,11 +3,11 @@
 var User = require('../models/user.model');
 var Follow = require('../models/follows.model');
 var Publication = require('../models/publications.model');
-var bcrypt = require('bcrypt-nodejs');
-var jwt = require('../services/jwt.service');
+var bcrypt = require('bcrypt-nodejs');//para encriptar la contraseña
+var jwt = require('../services/jwt.service');//servicio por el cual genero el token
 var mongoose_paginte = require('mongoose-pagination');
-var fs = require('fs');
-var path = require('path');
+var fs = require('fs');//metodo que permite subir archivos
+var path = require('path');//para reconocer la extensión de los archivos
 
 function home(req, res){
     res.status(200).send({
@@ -25,6 +25,7 @@ function prueba (req, res ){
 function saveUser (req, res){
     var params = req.body;
     var user = new User();
+   
     //Reviso que si tenga todos los campos requeridos
     if(params.name && params.surname && params.nick && params.email && params.password){
         user.name = params.name;
@@ -75,6 +76,7 @@ function saveUser (req, res){
                                 });
                             }else{
                                 if(userSaved){
+                                    
                                     res.status(200).send({
                                         user: userSaved
                                     });
@@ -231,6 +233,7 @@ async function followsUsersId(user_id){
     }
 }
 
+//trae cuantos seguidores, seguido y publicaciones tengo o alguien en especifico.
 function getCounter(req, res){
     if(req.params.id){
         getCountFollows(req.params.id).then((value)=>{

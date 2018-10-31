@@ -7,8 +7,8 @@ Breve explicacion de las dependecias
     "jwt-simple":           Para poder generar Tokken para la seguridad y autenticacion
     "moment":               Poder generar o capturar fechas
     "mongoose":             El ORM que es el encargado de la comunicacion entre NodeJS y MongoDB
-
-    "nodemon":              Esta depedencia es la encargada de cada vez que se haga un cambio en el front recargar                                  nuevamente la vista, para asi poder tener todo actualizado sin tener que estar cortando                                                  la compilacion!! 
+    
+    "nodemon":              Esta depedencia es la encargada de cada vez que se haga un cambio en el front recargar                           nuevamente la vista, para asi poder tener todo actualizado sin tener que estar cortando                          la compilacion!! 
 
 
     Que es un middlewere

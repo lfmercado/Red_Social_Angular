@@ -3,12 +3,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [UserService]
+  selector: 'app-register', //por medio de una etiqueta html con este nombre angular reconoce que este componente esta siendo llamado
+  templateUrl: './register.component.html', //se le indica a angular donde esta la plantilla html
+  styleUrls: ['./register.component.css'], //se le indica a angular donde esta la hoja de estilos
+  providers: [UserService] //son los servicios que utiliza el componente
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit { //
   public title;
   public user: User;
   public res: boolean;
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(registerForm){
     this._userService.register(this.user).subscribe(
-      response =>{
+      response =>{ //todo ok
         console.log(response);
         if(response.user && response.user._id){
           console.log(response.user);

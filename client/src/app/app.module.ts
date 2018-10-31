@@ -9,8 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { MaterialModule } from '@angular/material';
-import 'hammerjs';
 import { MomentModule } from 'angular2-moment';
 
 //modulo de mensajes privados
@@ -66,7 +64,7 @@ import { AdminGuard } from './services/user.guards';
     NoopAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MaterialModule
+
   ],
   exports:[
     MatButtonModule,

@@ -1,5 +1,6 @@
 <div class="col-lg-5" id="register">
   <h1 class="h1-strong">{{title}}</h1>
+  <!--en el metodo de angular le paso el objeto que contiene el valor de todos los formularios-->
   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-12">
     <div class="alert alert-success" *ngIf="res">
       !!El Usuario Se Ha Guardado Con Exito!! Puedes <a [routerLink]="['/login']">Loguearte Aquí</a>

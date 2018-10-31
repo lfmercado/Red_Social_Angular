@@ -1,4 +1,6 @@
 /* Generales*/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 .h1-strong{
     font-size: 35px;
     font-weight: bold;
@@ -339,7 +341,14 @@ section {
 .notificacion span{
     background: red !important;
     color: white !important;
+}
+html, body { height: 100%; }
+
+body { 
+    margin: 0;
+    font-family: 'Roboto', 
+    sans-serif; 
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
 
-}

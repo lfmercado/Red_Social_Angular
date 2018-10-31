@@ -7,7 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 //Modulo de animacion
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 import { MomentModule } from 'angular2-moment';
 
 //modulo de mensajes privados
@@ -31,6 +34,9 @@ import { FollowedComponent } from './components/followed/followed.component';
 //Servicios
 import { UserService } from './services/user.service';
 import { AdminGuard } from './services/user.guards';
+
+
+
 
 @NgModule({
   declarations: [//Aqui se cargan los pipes y los componentes
@@ -56,7 +62,15 @@ import { AdminGuard } from './services/user.guards';
     HttpClientModule,
     MomentModule,
     BrowserAnimationsModule,
-    MessagesModule
+    MessagesModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MaterialModule
+  ],
+  exports:[
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [//Aqui se importar los servicios
     appRoutingProviders,

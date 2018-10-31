@@ -17,10 +17,11 @@ export class UserService{
         this.url = Global.url;
     }
 
-    register(user: User): Observable<any>{
-        let params = JSON.stringify(user);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post(this.url + 'save-user' , params, {headers: headers});
+    register(user: User): Observable<any>{ //función que recibe un objeto de tipo usuario y retorna un observable
+                                            //Observable-> es una función en angular que permite acceder a sus funciones de callback(el error y el response)
+        let params = JSON.stringify(user); //paso el objeto del front a un tipo objeto que node pueda interpretar y se lo asigno a aesa variable
+        let headers = new HttpHeaders().set('Content-Type', 'application/json'); //cabeceras que el back interpreta para saber que le estoy pasando
+        return this._http.post(this.url + 'save-user' , params, {headers: headers});//retorno el resultado de la petición al back
     }
 
     sigUp(user: any, getTokken = null):Observable<any>{

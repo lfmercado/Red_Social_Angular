@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, DoCheck {
   public unviewed;
   public unviewed2;
   public actNotificacion: boolean;
+  public anio = new Date().getFullYear();
   constructor(
     private _userService: UserService,
     private _router: Router,
